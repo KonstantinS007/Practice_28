@@ -55,6 +55,11 @@ class RegRT(BasePage):
         return reg_email_code
         # ручной ввод кода, полученного на электронную почту
 
+    def timetest(self):
+        now = datetime.now()
+        timetest = f"{now.year}_{now.month}_{now.day}_{now.hour}_{now.minute}"
+        return timetest
+
 
 # тестовые методы для проверки ожиданий и результатов при регистрации
 class RegRTExpectations(BasePage):
@@ -122,6 +127,7 @@ class RegRTExpectations(BasePage):
             auth_expect = self.find_element(RTRegLocators.LOCATOR_RT_AUTH_EXPECT_CAPTCHA_FAIL)
             auth_expect_captcha_fail = auth_expect.text == "Неверно введен текст с картинки"
             return auth_expect_captcha_fail
+
     def timetest(self):
         now = datetime.now()
         timetest = f"{now.year}_{now.month}_{now.day}_{now.hour}_{now.minute}"

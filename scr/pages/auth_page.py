@@ -44,6 +44,30 @@ class AuthRT(BasePage):
         auth_form_button.click()
         return auth_form_button
 
+    def auth_type_vk(self):
+        auth_type_phone = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_VK_TYPE)
+        auth_type_phone.click()
+        return auth_type_phone
+
+    def auth_type_ok(self):
+        auth_type_phone = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_OK_TYPE)
+        auth_type_phone.click()
+        return auth_type_phone
+
+    def auth_type_google(self):
+        auth_type_phone = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_GOOGLE_TYPE)
+        auth_type_phone.click()
+        return auth_type_phone
+
+    def auth_type_mail(self):
+        auth_type_phone = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_MAIL_TYPE)
+        auth_type_phone.click()
+        return auth_type_phone
+
+    def auth_type_yandex(self):
+        auth_type_phone = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_YANDEX_TYPE)
+        auth_type_phone.click()
+        return auth_type_phone
 
 # тестовые методы для проверки ожиданий и результатов при авторизации
 class AuthRTExpectations(BasePage):
@@ -101,6 +125,30 @@ class AuthRTExpectations(BasePage):
         timetest = f"{now.year}_{now.month}_{now.day}_{now.hour}_{now.minute}"
         return timetest
 
+    def auth_expect_auth_page_vk(self):
+        auth_expect = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_EXPECT_VK_TITLE)
+        auth_expect_title = auth_expect.text == "ВКонтакте"
+        return auth_expect_title
+
+    def auth_expect_auth_page_ok(self):
+        auth_expect = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_EXPECT_VK_TITLE)
+        auth_expect_title = auth_expect.text == "Одноклассники"
+        return auth_expect_title
+
+    def auth_expect_auth_page_google(self):
+        auth_expect = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_EXPECT_VK_TITLE)
+        auth_expect_title = auth_expect.text == "Войдите в аккаунт Google"
+        return auth_expect_title
+
+    def auth_expect_auth_page_yandex(self):
+        auth_expect = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_EXPECT_VK_TITLE)
+        auth_expect_title = auth_expect.text == "Logo Logo_ya"
+        return auth_expect_title
+
+    def auth_expect_auth_page_mail(self):
+        auth_expect = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_EXPECT_VK_TITLE)
+        auth_expect_title = auth_expect.text == "Мой Мир@Mail.Ru"
+        return auth_expect_title
 
 
 

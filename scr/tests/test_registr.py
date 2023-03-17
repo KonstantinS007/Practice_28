@@ -1,4 +1,4 @@
-#  pytest test_registr.py > myoutput_registr.
+#  pytest test_registr.py > myoutput_registr.log
 #  pytest -m norm > myoutput_norm.log
 import pytest
 from scr.pages.registr_page import RegRT, RegRTExpectations
@@ -14,13 +14,14 @@ def test_reg_page(browser, request):
     t_reg_page.reg_page()
 
     t_reg_page = RegRTExpectations(browser)
-    assert t_reg_page.reg_expect_reg_title()
     browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}.png')
+    assert t_reg_page.reg_expect_reg_title(), f'Error bag - screenshots_registr/{request.node.name}.png'
+
 
 
 # Позитивный тест ввода всех валидных данных по каждому полю
 # ТЕСТ 1-02 - ввод данных в форму Регистрации
-
+@pytest.mark.skip(reason="Требуется регистрация и ввод кода")
 def test_reg_form_valid(browser, request):
     t_reg_page = RegRT(browser)
     t_reg_page.go_to_site()
@@ -33,14 +34,15 @@ def test_reg_form_valid(browser, request):
     t_reg_page.reg_button()
 
     t_reg_page = RegRTExpectations(browser)
-    assert t_reg_page.reg_expect_valid_code()
+    browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}(1).png')
+    assert t_reg_page.reg_expect_valid_code(), f'Error bag - {request.node.name}.png'
 
     t_reg_page = RegRT(browser)
     t_reg_page.reg_code(valid_code)
 
     t_reg_page = RegRTExpectations(browser)
     browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}.png')
-
+    # assert t_reg_page.reg_expect_surname(), f'Error bag - {request.node.name}.png'
 
 # негативные тесты ввода невалидных данных по каждому отдельному полю
 # ТЕСТ 1-03 (x7 параметров) - ввод данных в форму Регистрации - Поле "Имя"
@@ -59,8 +61,9 @@ def test_reg_form_name(browser, first_name, request):
     t_reg_page.reg_button()
 
     t_reg_page = RegRTExpectations(browser)
-    assert t_reg_page.reg_expect_name()
     browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}.png')
+    assert t_reg_page.reg_expect_name(), f'Error bag - {request.node.name}.png'
+
 
 
 # ТЕСТ 1-04 (x7 параметров) - ввод данных в форму Регистрации - Поле "Фамилия"
@@ -79,8 +82,9 @@ def test_reg_form_surname(browser, last_name, request):
     t_reg_page.reg_button()
 
     t_reg_page = RegRTExpectations(browser)
-    assert t_reg_page.reg_expect_surname()
     browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}.png')
+    assert t_reg_page.reg_expect_surname(), f'Error bag - {request.node.name}.png'
+
 
 
 # ТЕСТ 1-05 (x4 параметра) - ввод данных в форму Регистрации - Поле "E-mail или мобильный телефон"
@@ -98,8 +102,8 @@ def test_reg_form_address(browser, address, request):
     t_reg_page.reg_button()
 
     t_reg_page = RegRTExpectations(browser)
-    assert t_reg_page.reg_expect_address()
     browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}.png')
+    assert t_reg_page.reg_expect_address(), f'Error bag - {request.node.name}.png'
 
 
 # ТЕСТ 1-06 (x8 параметров) - ввод данных в форму Регистрации - Поле "Пароль"
@@ -114,12 +118,12 @@ def test_reg_form_password(browser, password, request):
     t_reg_page.reg_last_name(valid_last_name)
     t_reg_page.reg_address(valid_email)
     t_reg_page.reg_password(password)
-    t_reg_page.reg_password_confirm(valid_password_confirm)
+    t_reg_page.reg_password_confirm(password)
     t_reg_page.reg_button()
 
     t_reg_page = RegRTExpectations(browser)
-    assert t_reg_page.reg_expect_password()
     browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}.png')
+    assert t_reg_page.reg_expect_password(), f'Error bag - {request.node.name}.png'
 
 
 # ТЕСТ 1-07 (x2 параметра) - ввод данных в форму Регистрации - Поле "Подтверждение пароля"
@@ -138,8 +142,9 @@ def test_reg_form_password_confirm(browser, password_confirm, request):
     t_reg_page.reg_button()
 
     t_reg_page = RegRTExpectations(browser)
-    assert t_reg_page.reg_expect_password_confirm()
     browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}.png')
+    assert t_reg_page.reg_expect_password_confirm(), f'Error bag - {request.node.name}.png'
+
 
 
 # ТЕСТ 1-09 - ввод данных в форму Регистрации - Зарегистрированный ранее "E-mail или мобильный телефон"
@@ -156,5 +161,6 @@ def test_reg_address_reg(browser, request):
     t_reg_page.reg_button()
 
     t_reg_page = RegRTExpectations(browser)
-    assert t_reg_page.reg_expect_address_reg()
     browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}.png')
+    assert t_reg_page.reg_expect_address_reg(), f'Error bag - {request.node.name}.png'
+

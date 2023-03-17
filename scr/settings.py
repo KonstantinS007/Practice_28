@@ -11,9 +11,9 @@ valid_first_name = ""
 valid_last_name = ""
 valid_email = ""
 valid_phone = ""
-valid_password = ""
-valid_password_confirm = ""
-valid_code = "*****"  # код подтверждения, высылаемый на телефон/почту, вводится вручную
+valid_password = "Qwerty123"
+valid_password_confirm = valid_password
+valid_code = "65566"  # код подтверждения, высылаемый на телефон/почту, вводится вручную
 
 new_valid_password = "PASSword123"
 new_valid_password_confirm = new_valid_password
@@ -49,7 +49,7 @@ non_reg_login = "RTpassportlogin123!"
 non_reg_ls = "810293847566"
 invalid_ls = "81293847566"
 
-unicode_password = "ASDfgh123東のعไδ①¾"
+unicode_password = "ASDfgh123東のعไδ①¾"  # 東のعไδ①¾
 short_password = "ASfgh1"
 long_password = "ASDFGHJKLzxcvbnm12345"
 only_letter_password = "ASDFGHJKLzxcvbnm"

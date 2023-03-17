@@ -12,7 +12,11 @@ class RTAuthLocators:
     LOCATOR_RT_AUTH_BUTTON = (By.ID, "kc-login")  # Кнопка войти
     LOCATOR_RT_AUTH_CAPTCHA_IMG = (By.XPATH, "//img[@alt='Captcha']")  # Картинка капчи
     LOCATOR_RT_AUTH_CAPTCHA_ANSWER = (By.ID, "captcha")  # Поле ввода капчи
-
+    LOCATOR_RT_AUTH_VK_TYPE = (By.ID, "oidc_vk")  # Ссылка на вход через VK
+    LOCATOR_RT_AUTH_YANDEX_TYPE = (By.ID, "oidc_ya")  # Ссылка на вход через Yandex
+    LOCATOR_RT_AUTH_OK_TYPE = (By.ID, "oidc_ok")  # Ссылка на вход через OK
+    LOCATOR_RT_AUTH_GOOGLE_TYPE = (By.ID, "oidc_google")  # Ссылка на вход через Google
+    LOCATOR_RT_AUTH_MAIL_TYPE = (By.ID, "oidc_mail")  # Ссылка на вход через Mail
     # локаторы сайта для проверки ожиданий со страницы авторизации
     LOCATOR_RT_AUTH_EXPECT_SLOGAN = (By.CSS_SELECTOR, ".what-is__desc")  # Элемент Слоган РТ
     LOCATOR_RT_AUTH_EXPECT_TITLE = (By.CSS_SELECTOR, ".card-container__title")  # Элемент Авторизация
@@ -22,7 +26,12 @@ class RTAuthLocators:
     LOCATOR_RT_AUTH_EXPECT_AUTH_FAIL = (By.ID, "form-error-message")  # Предупреждение о неверном вводе авторизации
     LOCATOR_RT_AUTH_EXPECT_AUTH_NAME = (By.CSS_SELECTOR, ".user-name__first-patronymic")  # Элемент user-name при авторизации
     LOCATOR_RT_AUTH_EXPECT_AUTH_SURNAME = (By.CSS_SELECTOR, ".user-name__last-name")  # Элемент last-name при авторизации
-
+    # локаторы сайтов соц.сетей на авторизацию
+    LOCATOR_RT_AUTH_EXPECT_MAIL_TITLE = (By.XPATH, "//span[contains(text(),'Мой Мир@Mail.Ru')]")  # Элемент страницы Mail
+    LOCATOR_RT_AUTH_EXPECT_GOOGLE_TITLE = (By.XPATH, "//div[contains(text(),'Войдите в аккаунт Google')]")  # Элемент страницы Google
+    LOCATOR_RT_AUTH_EXPECT_OK_TITLE = (By.XPATH, "//div[contains(text(),'Одноклассники')]")  # Элемент страницы OK
+    LOCATOR_RT_AUTH_EXPECT_YANDEX_TITLE = (By.CLASS_NAME, "Logo Logo_ya")  # Элемент страницы Yandex
+    LOCATOR_RT_AUTH_EXPECT_VK_TITLE = (By.XPATH, "//b[contains(text(),'ВКонтакте')]")  # Элемент страницы VK
 
 # локаторы сайта для страницы регистрации
 class RTRegLocators:

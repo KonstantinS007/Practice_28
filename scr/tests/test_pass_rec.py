@@ -11,15 +11,17 @@ from scr.settings import *
 def test_pass_rec_page(browser, request):
     t_pass_rec_page = PassRecRT(browser)
     t_pass_rec_page.go_to_site()
-    t_pass_rec_page.pass_rec_page()
+    #  t_pass_rec_page.pass_rec_page()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    assert t_pass_rec_page.pass_rec_expect_pass_rec_title()
     browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}.png')
+    assert t_pass_rec_page.pass_rec_expect_pass_rec_title(), f'Error bag - screenshot {request.node.name}'
+
 
 
 # Позитивные тесты способов восстановления пароля по зарегистрированным данных
 # ТЕСТ 3-02 - ввод данных в форму Восстановления пароля - по номеру телефона и по смс-коду
+@pytest.mark.skip(reason="Требуется капча и код")
 def test_pass_rec_valid_phone_phone(browser, request):
     t_pass_rec_page = PassRecRT(browser)
     t_pass_rec_page.go_to_site()
@@ -38,11 +40,13 @@ def test_pass_rec_valid_phone_phone(browser, request):
     t_pass_rec_page.pass_rec_button_save_new_password()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    assert t_pass_rec_page.auth_expect_auth_new()
     browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}.png')
+    assert t_pass_rec_page.auth_expect_auth_new(), f'Error bag - screenshot {request.node.name}'
+
 
 
 # ТЕСТ 3-03 - ввод данных в форму Восстановления пароля - по номеру телефона и по коду на E-mail
+@pytest.mark.skip(reason="Требуется капча и код")
 def test_pass_rec_valid_phone_email(browser, request):
     t_pass_rec_page = PassRecRT(browser)
     t_pass_rec_page.go_to_site()
@@ -61,11 +65,13 @@ def test_pass_rec_valid_phone_email(browser, request):
     t_pass_rec_page.pass_rec_button_save_new_password()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    assert t_pass_rec_page.auth_expect_auth_new()
     browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}.png')
+    assert t_pass_rec_page.auth_expect_auth_new(), f'Error bag - screenshot {request.node.name}'
+
 
 
 # ТЕСТ 3-04 - ввод данных в форму Восстановления пароля - по E-mail и по смс-коду
+@pytest.mark.skip(reason="Требуется капча и код")
 def test_pass_rec_valid_email_phone(browser, request):
     t_pass_rec_page = PassRecRT(browser)
     t_pass_rec_page.go_to_site()
@@ -84,11 +90,13 @@ def test_pass_rec_valid_email_phone(browser, request):
     t_pass_rec_page.pass_rec_button_save_new_password()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    assert t_pass_rec_page.auth_expect_auth_new()
     browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}.png')
+    assert t_pass_rec_page.auth_expect_auth_new(), f'Error bag - screenshot {request.node.name}'
+
 
 
 # ТЕСТ 3-05 - ввод данных в форму Восстановления пароля - по E-mail и по коду на E-mail
+@pytest.mark.skip(reason="Требуется капча")
 def test_pass_rec_valid_email_email(browser, request):
     t_pass_rec_page = PassRecRT(browser)
     t_pass_rec_page.go_to_site()
@@ -107,12 +115,14 @@ def test_pass_rec_valid_email_email(browser, request):
     t_pass_rec_page.pass_rec_button_save_new_password()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    assert t_pass_rec_page.auth_expect_auth_new()
     browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}.png')
+    assert t_pass_rec_page.auth_expect_auth_new(), f'Error bag - screenshot {request.node.name}'
+
 
 
 # негативные тесты ввода невалидных данных по каждому отдельному полю
 # ТЕСТ 3-06 (x10 параметров) - ввод данных в форму Восстановления пароля - по номеру телефона, поле "Логин"
+@pytest.mark.skip(reason="Требуется капча")
 @pytest.mark.parametrize("login", [invalid_email, non_reg_email, invalid_phone, non_reg_phone, non_reg_login,
                                    non_reg_ls, empty_form, digit_valid_email, invalid_ls, invalid_phone_2])
 def test_pass_rec_form_valid_login_phone(browser, login, request):
@@ -125,12 +135,14 @@ def test_pass_rec_form_valid_login_phone(browser, login, request):
     t_pass_rec_page.pass_rec_button_continue()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    assert t_pass_rec_page.pass_rec_expect_login or t_pass_rec_page.pass_rec_expect_pass_rec_fail()\
-           or t_pass_rec_page.auth_expect_captcha_fail()
     browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}.png')
+    assert t_pass_rec_page.pass_rec_expect_login or t_pass_rec_page.pass_rec_expect_pass_rec_fail()\
+           or t_pass_rec_page.auth_expect_captcha_fail(), f'Error bag - screenshot {request.node.name}'
+
 
 
 # ТЕСТ 3-07 (x10 параметров) - ввод данных в форму Восстановления пароля - по E-mail, поле "Логин"
+@pytest.mark.skip(reason="Требуется капча")
 @pytest.mark.parametrize("login", [invalid_email, non_reg_email, invalid_phone, non_reg_phone, non_reg_login,
                                    non_reg_ls, empty_form, digit_valid_email, invalid_ls, invalid_phone_2])
 def test_pass_rec_form_valid_login_email(browser, login, request):
@@ -143,12 +155,14 @@ def test_pass_rec_form_valid_login_email(browser, login, request):
     t_pass_rec_page.pass_rec_button_continue()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    assert t_pass_rec_page.pass_rec_expect_login or t_pass_rec_page.pass_rec_expect_pass_rec_fail()\
-           or t_pass_rec_page.auth_expect_captcha_fail()
     browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}.png')
+    assert t_pass_rec_page.pass_rec_expect_login or t_pass_rec_page.pass_rec_expect_pass_rec_fail()\
+           or t_pass_rec_page.auth_expect_captcha_fail(), f'Error bag - screenshot {request.node.name}'
+
 
 
 # ТЕСТ 3-08 (x10 параметров) - ввод данных в форму Восстановления пароля - по Логину, поле "Логин"
+@pytest.mark.skip(reason="Требуется капча")
 @pytest.mark.parametrize("login", [invalid_email, non_reg_email, invalid_phone, non_reg_phone, non_reg_login,
                                    non_reg_ls, empty_form, digit_valid_email, invalid_ls, invalid_phone_2])
 def test_pass_rec_form_valid_login_login(browser, login, request):
@@ -161,12 +175,14 @@ def test_pass_rec_form_valid_login_login(browser, login, request):
     t_pass_rec_page.pass_rec_button_continue()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    assert t_pass_rec_page.pass_rec_expect_login or t_pass_rec_page.pass_rec_expect_pass_rec_fail()\
-           or t_pass_rec_page.auth_expect_captcha_fail()
     browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}.png')
+    assert t_pass_rec_page.pass_rec_expect_login or t_pass_rec_page.pass_rec_expect_pass_rec_fail()\
+           or t_pass_rec_page.auth_expect_captcha_fail(), f'Error bag - screenshot {request.node.name}'
+
 
 
 # ТЕСТ 3-09 (x10 параметров) - ввод данных в форму Восстановления пароля - по лицевому счету, поле "Логин"
+@pytest.mark.skip(reason="Требуется капча")
 @pytest.mark.parametrize("login", [invalid_email, non_reg_email, invalid_phone, non_reg_phone, non_reg_login,
                                    non_reg_ls, empty_form, digit_valid_email, invalid_ls, invalid_phone_2])
 def test_pass_rec_form_valid_login_ls(browser, login, request):
@@ -179,13 +195,15 @@ def test_pass_rec_form_valid_login_ls(browser, login, request):
     t_pass_rec_page.pass_rec_button_continue()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    assert t_pass_rec_page.pass_rec_expect_login or t_pass_rec_page.pass_rec_expect_pass_rec_fail()\
-           or t_pass_rec_page.auth_expect_captcha_fail()
     browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}.png')
+    assert t_pass_rec_page.pass_rec_expect_login or t_pass_rec_page.pass_rec_expect_pass_rec_fail()\
+           or t_pass_rec_page.auth_expect_captcha_fail(), f'Error bag - screenshot {request.node.name}'
+
 
 
 # ТЕСТ 3-10 - ввод данных в форму Восстановления пароля - без выбора варианта получения кода
-@pytest.mark.norm
+
+@pytest.mark.skip(reason="Требуется капча")
 def test_pass_rec_form_valid_login_by_none(browser, request):
     t_pass_rec_page = PassRecRT(browser)
     t_pass_rec_page.go_to_site()
@@ -197,14 +215,14 @@ def test_pass_rec_form_valid_login_by_none(browser, request):
     t_pass_rec_page.pass_rec_button_continue_reset()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    assert t_pass_rec_page.pass_rec_expect_code_send()\
-           or t_pass_rec_page.auth_expect_captcha_fail()
     browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}.png')
+    assert t_pass_rec_page.pass_rec_expect_code_send()\
+           or t_pass_rec_page.auth_expect_captcha_fail(), f'Error bag - screenshot {request.node.name}'
 
 
 # ТЕСТ 3-11 - ввод данных в форму Восстановления пароля
 # выбор получения кода по E-mail, ввод неверного кода
-@pytest.mark.norm
+@pytest.mark.skip(reason="Требуется капча")
 def test_pass_rec_form_valid_login_by_code(browser, request):
     t_pass_rec_page = PassRecRT(browser)
     t_pass_rec_page.go_to_site()
@@ -217,6 +235,7 @@ def test_pass_rec_form_valid_login_by_code(browser, request):
     t_pass_rec_page.pass_rec_button_continue_reset()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}.png')
     assert t_pass_rec_page.pass_rec_expect_code_send()\
            or t_pass_rec_page.auth_expect_captcha_fail()
 
@@ -224,13 +243,14 @@ def test_pass_rec_form_valid_login_by_code(browser, request):
     t_pass_rec_page.pass_rec_code_input_invalid_code(invalid_code)
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    assert t_pass_rec_page.pass_rec_expect_code_send()
     browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}.png')
+    assert t_pass_rec_page.pass_rec_expect_code_send(), f'Error bag - screenshot {request.node.name}'
+
 
 
 # ТЕСТ 3-12 - ввод данных в форму Восстановления пароля
 # выбор получения кода по смс, ввод неверного кода
-@pytest.mark.norm
+@pytest.mark.skip(reason="Требуется капча")
 def test_pass_rec_form_valid_login_by_sms(browser, request):
     t_pass_rec_page = PassRecRT(browser)
     t_pass_rec_page.go_to_site()
@@ -243,12 +263,14 @@ def test_pass_rec_form_valid_login_by_sms(browser, request):
     t_pass_rec_page.pass_rec_button_continue_reset()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}.png')
     assert t_pass_rec_page.pass_rec_expect_code_send()\
-           or t_pass_rec_page.auth_expect_captcha_fail()
+           or t_pass_rec_page.auth_expect_captcha_fail(), f'Error bag - screenshot {request.node.name}'
 
     t_pass_rec_page = PassRecRT(browser)
     t_pass_rec_page.pass_rec_code_input_invalid_code(invalid_code)
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    assert t_pass_rec_page.pass_rec_expect_code_send()
     browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}.png')
+    assert t_pass_rec_page.pass_rec_expect_code_send(), f'Error bag - screenshot {request.node.name}'
+
