@@ -11,12 +11,22 @@ from scr.settings import *
 def test_pass_rec_page(browser, request):
     t_pass_rec_page = PassRecRT(browser)
     t_pass_rec_page.go_to_site()
-    #  t_pass_rec_page.pass_rec_page()
+    t_pass_rec_page.pass_rec_page()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
     browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}.png')
     assert t_pass_rec_page.pass_rec_expect_pass_rec_title(), f'Error bag - screenshot {request.node.name}'
 
+
+@pytest.mark.norm
+def test_reg_slogan(browser, request):
+    t_pass_rec_page = PassRecRT(browser)
+    t_pass_rec_page.go_to_site()
+    t_pass_rec_page.pass_rec_page()
+
+    t_pass_rec_page = PassRecRTExpectations(browser)
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}.png')
+    assert t_pass_rec_page.reg_expect_slogan(), f'Error bag - screenshots_registr/{request.node.name}.png'
 
 
 # Позитивные тесты способов восстановления пароля по зарегистрированным данных

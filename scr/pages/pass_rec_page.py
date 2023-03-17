@@ -96,6 +96,11 @@ class PassRecRTExpectations(BasePage):
         pass_rec_expect_pass_rec_title = pass_rec_expect.text == "Восстановление пароля"
         return pass_rec_expect_pass_rec_title
 
+    def reg_expect_slogan(self):
+        pass_rec_expect = self.find_element(RTPassRecLocators.LOCATOR_RT_Pass_Rec_SLOGAN)
+        pass_rec_expect_slogan = pass_rec_expect.text == "Персональный помощник в цифровом мире Ростелекома"
+        return pass_rec_expect_slogan
+
     def pass_rec_expect_login(self):
         pass_rec_expect = None
         if pass_rec_expect == self.is_presented(RTPassRecLocators.LOCATOR_RT_PASS_REC_EXPECT_LOGIN) is None:

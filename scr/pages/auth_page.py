@@ -131,22 +131,22 @@ class AuthRTExpectations(BasePage):
         return auth_expect_title
 
     def auth_expect_auth_page_ok(self):
-        auth_expect = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_EXPECT_VK_TITLE)
+        auth_expect = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_EXPECT_OK_TITLE)
         auth_expect_title = auth_expect.text == "Одноклассники"
         return auth_expect_title
 
     def auth_expect_auth_page_google(self):
-        auth_expect = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_EXPECT_VK_TITLE)
+        auth_expect = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_EXPECT_GOOGLE_TITLE)
         auth_expect_title = auth_expect.text == "Войдите в аккаунт Google"
         return auth_expect_title
 
     def auth_expect_auth_page_yandex(self):
-        auth_expect = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_EXPECT_VK_TITLE)
+        auth_expect = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_EXPECT_YANDEX_TITLE)
         auth_expect_title = auth_expect.text == "Logo Logo_ya"
         return auth_expect_title
 
     def auth_expect_auth_page_mail(self):
-        auth_expect = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_EXPECT_VK_TITLE)
+        auth_expect = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_EXPECT_MAIL_TITLE)
         auth_expect_title = auth_expect.text == "Мой Мир@Mail.Ru"
         return auth_expect_title
 

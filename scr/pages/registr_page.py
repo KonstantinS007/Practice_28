@@ -13,6 +13,8 @@ class RegRT(BasePage):
         reg_link.click()
         return reg_link
 
+
+
     def reg_first_name(self, first_name):
         reg_form_name = self.find_element(RTRegLocators.LOCATOR_RT_REG_FIRST_NAME)
         reg_form_name.click()
@@ -67,6 +69,11 @@ class RegRTExpectations(BasePage):
         reg_expect = self.find_element(RTRegLocators.LOCATOR_RT_REG_EXPECT_REG_TITLE)
         reg_expect_reg_title = reg_expect.text == "Регистрация"
         return reg_expect_reg_title
+
+    def reg_expect_slogan(self):
+        reg_expect = self.find_element(RTRegLocators.LOCATOR_RT_REG_SLOGAN)
+        reg_expect_slogan = reg_expect.text == "Персональный помощник в цифровом мире Ростелекома"
+        return reg_expect_slogan
 
     def reg_expect_valid_code(self):
         reg_expect = self.find_element(RTRegLocators.LOCATOR_RT_REG_EXPECT_VALID_CODE)

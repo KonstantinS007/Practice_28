@@ -18,6 +18,7 @@ class RTAuthLocators:
     LOCATOR_RT_AUTH_GOOGLE_TYPE = (By.ID, "oidc_google")  # Ссылка на вход через Google
     LOCATOR_RT_AUTH_MAIL_TYPE = (By.ID, "oidc_mail")  # Ссылка на вход через Mail
     # локаторы сайта для проверки ожиданий со страницы авторизации
+    LOCATOR_RT_AUTH_EXPECT_PHONE_DEFOLT_LOGIN = (By.XPATH, "//span[contains(text(),'Мобильный телефон')]")  # Элемент по умолчанию в поле вода на Мобильный телефон
     LOCATOR_RT_AUTH_EXPECT_SLOGAN = (By.CSS_SELECTOR, ".what-is__desc")  # Элемент Слоган РТ
     LOCATOR_RT_AUTH_EXPECT_TITLE = (By.CSS_SELECTOR, ".card-container__title")  # Элемент Авторизация
     LOCATOR_RT_AUTH_EXPECT_LOGIN = (By.CSS_SELECTOR, ".rt-input-container__meta.rt-input-container__meta--error")
@@ -35,6 +36,7 @@ class RTAuthLocators:
 
 # локаторы сайта для страницы регистрации
 class RTRegLocators:
+    LOCATOR_RT_REG_SLOGAN = (By.CSS_SELECTOR, ".what-is__desc")  # Элемент Слоган РТ
     LOCATOR_RT_REG_LINK = (By.ID, "kc-register")  # Элемент Зарегистрироваться
     LOCATOR_RT_REG_FIRST_NAME = (By.XPATH, "//input[@name='firstName']")  # Поле ввода Имя
     LOCATOR_RT_REG_LAST_NAME = (By.XPATH, "//input[@name='lastName']")  # Поле ввода Фамилия
@@ -62,6 +64,7 @@ class RTRegLocators:
 
 # локаторы сайта для страницы восстановления пароля
 class RTPassRecLocators:
+    LOCATOR_RT_Pass_Rec_SLOGAN = (By.CSS_SELECTOR, ".what-is__desc")  # Элемент Слоган РТ
     LOCATOR_RT_PASS_REC_LINK = (By.ID, "forgot_password")  # Кнопка забыл пароль
     LOCATOR_RT_PASS_REC_TYPE_PHONE = (By.ID, "t-btn-tab-phone")  # Кнопка телефон
     LOCATOR_RT_PASS_REC_TYPE_EMAIL = (By.ID, "t-btn-tab-mail")  # Кнопка почта
