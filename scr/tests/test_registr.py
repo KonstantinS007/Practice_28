@@ -2,7 +2,6 @@
 #  pytest -m norm > myoutput_norm.log
 import pytest
 from scr.pages.registr_page import RegRT, RegRTExpectations
-
 from scr.settings import *
 
 
