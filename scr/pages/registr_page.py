@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+# -*- encoding=utf8 -*-
 import pytest
 import selenium
 from datetime import datetime
@@ -12,8 +14,6 @@ class RegRT(BasePage):
         reg_link = self.find_element(RTRegLocators.LOCATOR_RT_REG_LINK)
         reg_link.click()
         return reg_link
-
-
 
     def reg_first_name(self, first_name):
         reg_form_name = self.find_element(RTRegLocators.LOCATOR_RT_REG_FIRST_NAME)
@@ -139,4 +139,3 @@ class RegRTExpectations(BasePage):
         now = datetime.now()
         timetest = f"{now.year}_{now.month}_{now.day}_{now.hour}_{now.minute}"
         return timetest
-

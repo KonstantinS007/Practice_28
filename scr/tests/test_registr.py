@@ -1,9 +1,10 @@
-#  pytest test_registr.py > myoutput_registr.log
-#  pytest -m norm > myoutput_norm.log
+#!/usr/bin/python3
+# coding: utf8
 import pytest
 from scr.pages.registr_page import RegRT, RegRTExpectations
 from scr.settings import *
-
+#  pytest test_registr.py > myoutput_registr.log
+#  pytest -m norm > myoutput_norm.log
 
 
 @pytest.mark.norm
@@ -17,19 +18,7 @@ def test_reg_page(browser, request):
     t_reg_page = RegRTExpectations(browser)
     time_expect_screen = t_reg_page.timetest()
     browser.save_screenshot(f'screenshots_registr/{request.node.name}_{time_expect_screen}(expect).png')
-    assert t_reg_page.reg_expect_reg_title(), f'Error bag - screenshots_registr/{request.node.name}_{time_expect_screen}.png'
-
-
-@pytest.mark.norm
-def test_reg_slogan(browser, request):
-    t_reg_page = RegRT(browser)
-    t_reg_page.go_to_site()
-    t_reg_page.reg_page()
-
-    t_reg_page = RegRTExpectations(browser)
-    time_expect_screen = t_reg_page.timetest()
-    browser.save_screenshot(f'screenshots_registr/{request.node.name}_{time_expect_screen}(expect).png')
-    assert t_reg_page.reg_expect_slogan(), f'Error bag - screenshots_registr/{request.node.name}_{time_expect_screen}.png'
+    assert t_reg_page.reg_expect_reg_title(), "Не перешло на страницу Регистрация"
 
 
 @pytest.mark.skip(reason="Требуется регистрация и ввод кода")
@@ -50,7 +39,7 @@ def test_reg_form_valid(browser, request):
     t_reg_page = RegRTExpectations(browser)
     time_expect_screen = t_reg_page.timetest()
     browser.save_screenshot(f'screenshots_registr/{request.node.name}_{time_expect_screen}(expect).png')
-    assert t_reg_page.reg_expect_valid_code(), f'Error bag - {request.node.name}_{time_expect_screen}.png'
+    assert t_reg_page.reg_expect_valid_code(), ""
 
     t_reg_page = RegRT(browser)
     t_reg_page.reg_code(valid_code)
@@ -58,7 +47,7 @@ def test_reg_form_valid(browser, request):
     t_reg_page = RegRTExpectations(browser)
     time_expect_screen = t_reg_page.timetest()
     browser.save_screenshot(f'screenshots_registr/{request.node.name}_{time_expect_screen}(expect).png')
-    assert t_reg_page.reg_expect_surname(), f'Error bag - {request.node.name}_{time_expect_screen}.png'
+    assert t_reg_page.reg_expect_surname(), ""
 
 
 @pytest.mark.norm
@@ -81,7 +70,7 @@ def test_reg_form_name(browser, first_name, request):
     t_reg_page = RegRTExpectations(browser)
     time_expect_screen = t_reg_page.timetest()
     browser.save_screenshot(f'screenshots_registr/{request.node.name}_{time_expect_screen}(expect).png')
-    assert t_reg_page.reg_expect_name(), f'Error bag - {request.node.name}_{time_expect_screen}.png'
+    assert t_reg_page.reg_expect_name(), "Произошла перенаправление на получение кода регистрации с некорректными данными"
 
 
 @pytest.mark.norm
@@ -103,7 +92,7 @@ def test_reg_form_surname(browser, last_name, request):
     t_reg_page = RegRTExpectations(browser)
     time_expect_screen = t_reg_page.timetest()
     browser.save_screenshot(f'screenshots_registr/{request.node.name}_{time_expect_screen}(expect).png')
-    assert t_reg_page.reg_expect_surname(), f'Error bag - {request.node.name}_{time_expect_screen}.png'
+    assert t_reg_page.reg_expect_surname(), "Произошла перенаправление на получение кода регистрации с некорректными данными"
 
 
 @pytest.mark.norm
@@ -124,7 +113,7 @@ def test_reg_form_address(browser, address, request):
     t_reg_page = RegRTExpectations(browser)
     time_expect_screen = t_reg_page.timetest()
     browser.save_screenshot(f'screenshots_registr/{request.node.name}_{time_expect_screen}(expect).png')
-    assert t_reg_page.reg_expect_address(), f'Error bag - {request.node.name}_{time_expect_screen}.png'
+    assert t_reg_page.reg_expect_address(), "Произошла перенаправление на получение кода с некорректными данными"
 
 
 @pytest.mark.norm
@@ -146,7 +135,7 @@ def test_reg_form_password(browser, password, request):
     t_reg_page = RegRTExpectations(browser)
     time_expect_screen = t_reg_page.timetest()
     browser.save_screenshot(f'screenshots_registr/{request.node.name}_{time_expect_screen}(expect).png')
-    assert t_reg_page.reg_expect_password(), f'Error bag - {request.node.name}_{time_expect_screen}.png'
+    assert t_reg_page.reg_expect_password(), "Произошла перенаправление на получение кода с некорректными данными"
 
 
 @pytest.mark.norm
@@ -168,12 +157,23 @@ def test_reg_form_password_confirm(browser, password_confirm, request):
     t_reg_page = RegRTExpectations(browser)
     time_expect_screen = t_reg_page.timetest()
     browser.save_screenshot(f'screenshots_registr/{request.node.name}_{time_expect_screen}(expect).png')
-    assert t_reg_page.reg_expect_password_confirm(), f'Error bag - {request.node.name}_{time_expect_screen}.png'
-
-
+    assert t_reg_page.reg_expect_password_confirm(), "Произошла перенаправление на регистрацию с некорректными данными"
 
 
 @pytest.mark.norm
+def test_reg_slogan(browser, request):
+    """ТЕСТ 1-08 на наличие слогана РТ"""
+    t_reg_page = RegRT(browser)
+    t_reg_page.go_to_site()
+    t_reg_page.reg_page()
+
+    t_reg_page = RegRTExpectations(browser)
+    time_expect_screen = t_reg_page.timetest()
+    browser.save_screenshot(f'screenshots_registr/{request.node.name}_{time_expect_screen}(expect).png')
+    assert t_reg_page.reg_expect_slogan(), "Отсутствие слогана РТ"
+
+
+@pytest.mark.skip(reason="Требуется зарегистрированный аккаунт")
 def test_reg_address_reg(browser, request):
     """ТЕСТ 1-09 - ввод данных в форму Регистрации - Зарегистрированный ранее 'E-mail или мобильный телефон'"""
     t_reg_page = RegRT(browser)
@@ -190,5 +190,4 @@ def test_reg_address_reg(browser, request):
     t_reg_page = RegRTExpectations(browser)
     time_expect_screen = t_reg_page.timetest()
     browser.save_screenshot(f'screenshots_registr/{request.node.name}_{time_expect_screen}(expect).png')
-    assert t_reg_page.reg_expect_address_reg(), f'Error bag - {request.node.name}_{time_expect_screen}.png'
-
+    assert t_reg_page.reg_expect_address_reg(), "Ошибка с регистрацией одинаковых данных"

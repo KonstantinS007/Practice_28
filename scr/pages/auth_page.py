@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+# -*- encoding=utf8 -*-
 from datetime import datetime
 from .base import BasePage
 from scr.settings import valid_first_name, valid_last_name

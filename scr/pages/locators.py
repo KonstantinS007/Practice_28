@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+# -*- encoding=utf8 -*-
 from selenium.webdriver.common.by import By
 
 

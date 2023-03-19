@@ -1,11 +1,12 @@
-# pytest test_auth.py > myoutput_auth.log
+#!/usr/bin/python3
+# coding: utf8
 import time
 import pytest
 from scr.pages.auth_page import AuthRT, AuthRTExpectations
 from scr.settings import *
+# pytest test_auth.py > myoutput_auth.log
 
 
-#
 @pytest.mark.norm
 def test_auth_page(browser, request):
     """Позитивный тест загрузки страницы Авторизации
@@ -16,73 +17,8 @@ def test_auth_page(browser, request):
     t_auth_page = AuthRTExpectations(browser)
     time_expect_screen = t_auth_page.timetest()
     browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
-    assert t_auth_page.auth_expect_auth_page(), f'Error bag - screenshot {request.node.name}_{time_expect_screen}'
-    assert t_auth_page.auth_expect_auth_slogan(), f'Error bag - screenshot {request.node.name}_{time_expect_screen}'
-
-
-@pytest.mark.norm
-def test_auth_page_vk(browser, request):
-    """Тест на переход авторизации через соц.сеть VK"""
-    t_auth_page = AuthRT(browser)
-    t_auth_page.go_to_site()
-    t_auth_page.auth_type_vk()
-
-    t_auth_page = AuthRTExpectations(browser)
-    time_expect_screen = t_auth_page.timetest()
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
-    assert t_auth_page.auth_expect_auth_page_vk(), f'Error bag - screenshot {request.node.name}_{time_expect_screen}'
-
-
-@pytest.mark.norm
-def test_auth_page_ok(browser, request):
-    """Тест на переход авторизации через соц.сеть ok"""
-    t_auth_page = AuthRT(browser)
-    t_auth_page.go_to_site()
-    t_auth_page.auth_type_ok()
-
-    t_auth_page = AuthRTExpectations(browser)
-    time_expect_screen = t_auth_page.timetest()
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
-    assert t_auth_page.auth_expect_auth_page_ok(), f'Error bag - screenshot {request.node.name}_{time_expect_screen}'
-
-
-@pytest.mark.norm
-def test_auth_page_mail(browser, request):
-    """Тест на переход авторизации через соц.сеть mail"""
-    t_auth_page = AuthRT(browser)
-    t_auth_page.go_to_site()
-    t_auth_page.auth_type_mail()
-
-    t_auth_page = AuthRTExpectations(browser)
-    time_expect_screen = t_auth_page.timetest()
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
-    assert t_auth_page.auth_expect_auth_page_mail(), f'Error bag - screenshot {request.node.name}_{time_expect_screen}'
-
-
-@pytest.mark.norm
-def test_auth_page_google(browser, request):
-    """Тест на переход авторизации через соц.сеть google"""
-    t_auth_page = AuthRT(browser)
-    t_auth_page.go_to_site()
-    t_auth_page.auth_type_google()
-
-    t_auth_page = AuthRTExpectations(browser)
-    time_expect_screen = t_auth_page.timetest()
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
-    assert t_auth_page.auth_expect_auth_page_google(), f'Error bag - screenshot {request.node.name}_{time_expect_screen}'
-
-
-@pytest.mark.norm
-def test_auth_page_yandex(browser, request):
-    """Тест на переход авторизации через соц.сеть yandex"""
-    t_auth_page = AuthRT(browser)
-    t_auth_page.go_to_site()
-    t_auth_page.auth_type_yandex()
-
-    t_auth_page = AuthRTExpectations(browser)
-    time_expect_screen = t_auth_page.timetest()
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
-    assert t_auth_page.auth_expect_auth_page_yandex(), f'Error bag - screenshot {request.node.name}_{time_expect_screen}'
+    assert t_auth_page.auth_expect_auth_page(), ""
+    assert t_auth_page.auth_expect_auth_slogan(), ""
 
 
 @pytest.mark.skip(reason="Требуется капча")
@@ -102,8 +38,8 @@ def test_auth_email_valid_form(browser, request):
     time_expect_screen = t_auth_page.timetest()
     browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
     assert t_auth_page.auth_expect_name()\
-           or t_auth_page.auth_expect_captcha_fail(), f'Error bag - screenshot {request.node.name}_{time_expect_screen}'
-    assert t_auth_page.auth_expect_surname(), f'Error bag - screenshot {request.node.name}_{time_expect_screen}'
+           or t_auth_page.auth_expect_captcha_fail(), ""
+    assert t_auth_page.auth_expect_surname(), ""
 
 
 @pytest.mark.skip(reason="Требуется капча")
@@ -121,8 +57,34 @@ def test_auth_phone_valid_form(browser, request):
     t_auth_page = AuthRTExpectations(browser)
     time_expect_screen = t_auth_page.timetest()
     browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
-    assert t_auth_page.auth_expect_name(), f'Error bag - screenshot {request.node.name}_{time_expect_screen}'
-    assert t_auth_page.auth_expect_surname(), f'Error bag - screenshot {request.node.name}_{time_expect_screen}'
+    assert t_auth_page.auth_expect_name(), ""
+    assert t_auth_page.auth_expect_surname(), ""
+
+
+@pytest.mark.norm
+def test_auth_page_ok(browser, request):
+    """Тест 2-04 на переход авторизации через соц.сеть ok"""
+    t_auth_page = AuthRT(browser)
+    t_auth_page.go_to_site()
+    t_auth_page.auth_type_ok()
+
+    t_auth_page = AuthRTExpectations(browser)
+    time_expect_screen = t_auth_page.timetest()
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
+    assert t_auth_page.auth_expect_auth_page_ok(), ""
+
+
+@pytest.mark.norm
+def test_auth_page_mail(browser, request):
+    """Тест 2-05 на переход авторизации через соц.сеть mail"""
+    t_auth_page = AuthRT(browser)
+    t_auth_page.go_to_site()
+    t_auth_page.auth_type_mail()
+
+    t_auth_page = AuthRTExpectations(browser)
+    time_expect_screen = t_auth_page.timetest()
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
+    assert t_auth_page.auth_expect_auth_page_mail(), ""
 
 
 @pytest.mark.skip(reason="Требуется капча")
@@ -142,7 +104,7 @@ def test_auth_phone_invalid_password(browser, request):
     time_expect_screen = t_auth_page.timetest()
     browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
     assert t_auth_page.auth_expect_auth_fail()\
-           or t_auth_page.auth_expect_captcha_fail(), f'Error bag - screenshot {request.node.name}_{time_expect_screen}'
+           or t_auth_page.auth_expect_captcha_fail(), ""
 
 
 @pytest.mark.skip(reason="Требуется капча")
@@ -161,7 +123,7 @@ def test_auth_email_invalid_password(browser, request):
     time_expect_screen = t_auth_page.timetest()
     browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
     assert t_auth_page.auth_expect_auth_fail()\
-           or t_auth_page.auth_expect_captcha_fail(), f'Error bag - screenshot {request.node.name}_{time_expect_screen}'
+           or t_auth_page.auth_expect_captcha_fail(), ""
 
 
 @pytest.mark.skip(reason="Требуется капча")
@@ -184,7 +146,7 @@ def test_auth_phone_invalid_login(browser, login, request):
     time_expect_screen = t_auth_page.timetest()
     browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
     assert t_auth_page.auth_expect_login() or t_auth_page.auth_expect_auth_fail() \
-           or t_auth_page.auth_expect_captcha_fail(), f'Error bag - screenshot {request.node.name}_{time_expect_screen}'
+           or t_auth_page.auth_expect_captcha_fail(), ""
 
 
 @pytest.mark.skip(reason="Требуется капча")
@@ -206,7 +168,7 @@ def test_auth_email_invalid_login(browser, login, request):
     time_expect_screen = t_auth_page.timetest()
     browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
     assert t_auth_page.auth_expect_login() or t_auth_page.auth_expect_auth_fail() \
-           or t_auth_page.auth_expect_captcha_fail(), f'Error bag - screenshot {request.node.name}_{time_expect_screen}'
+           or t_auth_page.auth_expect_captcha_fail(), ""
 
 
 @pytest.mark.skip(reason="Требуется капча")
@@ -228,7 +190,7 @@ def test_auth_login_invalid_login(browser, login, request):
     time_expect_screen = t_auth_page.timetest()
     browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
     assert t_auth_page.auth_expect_login() or t_auth_page.auth_expect_auth_fail() \
-           or t_auth_page.auth_expect_captcha_fail(), f'Error bag - screenshot {request.node.name}_{time_expect_screen}'
+           or t_auth_page.auth_expect_captcha_fail(), ""
 
 
 @pytest.mark.skip(reason="Требуется капча")
@@ -250,5 +212,44 @@ def test_auth_login_invalid_ls(browser, login, request):
     time_expect_screen = t_auth_page.timetest()
     browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
     assert t_auth_page.auth_expect_login() or t_auth_page.auth_expect_auth_fail() \
-           or t_auth_page.auth_expect_captcha_fail(), f'Error bag - screenshot {request.node.name}_{time_expect_screen}'
+           or t_auth_page.auth_expect_captcha_fail(), ""
 
+
+@pytest.mark.norm
+def test_auth_page_vk(browser, request):
+    """Тест 2-12 - на переход авторизации через соц.сеть VK"""
+    t_auth_page = AuthRT(browser)
+    t_auth_page.go_to_site()
+    t_auth_page.auth_type_vk()
+
+    t_auth_page = AuthRTExpectations(browser)
+    time_expect_screen = t_auth_page.timetest()
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
+    assert t_auth_page.auth_expect_auth_page_vk(), ""
+
+
+@pytest.mark.norm
+def test_auth_page_google(browser, request):
+    """Тест 2-13 - на переход авторизации через соц.сеть google"""
+    t_auth_page = AuthRT(browser)
+    t_auth_page.go_to_site()
+    t_auth_page.auth_type_google()
+
+    t_auth_page = AuthRTExpectations(browser)
+    time_expect_screen = t_auth_page.timetest()
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
+    assert t_auth_page.auth_expect_auth_page_google(), ""
+
+
+@pytest.mark.norm
+def test_auth_page_yandex(browser, request):
+    """Тест 2-14 - на переход авторизации через соц.сеть yandex"""
+    t_auth_page = AuthRT(browser)
+    t_auth_page.go_to_site()
+    time.sleep(3)
+    t_auth_page.auth_type_yandex()
+
+    t_auth_page = AuthRTExpectations(browser)
+    time_expect_screen = t_auth_page.timetest()
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
+    assert t_auth_page.auth_expect_auth_page_yandex(), "Не происходит переход на Yandex"
