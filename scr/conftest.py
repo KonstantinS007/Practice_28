@@ -1,5 +1,5 @@
-#!/usr/bin/python3
-# -*- encoding=utf8 -*-
+#!python
+# coding: utf8
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service

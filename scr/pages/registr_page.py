@@ -1,5 +1,5 @@
-#!/usr/bin/python3
-# -*- encoding=utf8 -*-
+#!python
+# coding: utf8
 import pytest
 import selenium
 from datetime import datetime

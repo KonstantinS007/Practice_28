@@ -270,7 +270,7 @@
      pytest test_pass_rec.py > myoutput_pass_rec.log
 
      либо по маркеру  pytest -m norm > myoutput_norm.log
-     без кодов, но 3 тестах ввести капчу(5авто,4пасс,31регистр)
+     без кодов и капчи(6авто,2пасс,31регистр)
    </details>
   </div>
   <div>

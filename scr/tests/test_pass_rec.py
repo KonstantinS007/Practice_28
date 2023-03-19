@@ -1,5 +1,5 @@
-#!/usr/bin/python3
-# coding: utf8
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 import time
 import pytest
 from scr.pages.pass_rec_page import PassRecRT, PassRecRTExpectations

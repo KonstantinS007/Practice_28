@@ -1,5 +1,5 @@
-#!/usr/bin/python3
-# coding: utf8
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 import pytest
 from scr.pages.registr_page import RegRT, RegRTExpectations
 from scr.settings import *

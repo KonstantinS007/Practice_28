@@ -1,5 +1,5 @@
-#!/usr/bin/python3
-# coding: utf8
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 import time
 import pytest
 from scr.pages.auth_page import AuthRT, AuthRTExpectations
@@ -17,8 +17,8 @@ def test_auth_page(browser, request):
     t_auth_page = AuthRTExpectations(browser)
     time_expect_screen = t_auth_page.timetest()
     browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
-    assert t_auth_page.auth_expect_auth_page(), ""
-    assert t_auth_page.auth_expect_auth_slogan(), ""
+    assert t_auth_page.auth_expect_auth_page(), "Отсутствует название сайта"
+    assert t_auth_page.auth_expect_auth_slogan(), "Отсутствует название слоган"
 
 
 @pytest.mark.skip(reason="Требуется капча")
@@ -71,7 +71,7 @@ def test_auth_page_ok(browser, request):
     t_auth_page = AuthRTExpectations(browser)
     time_expect_screen = t_auth_page.timetest()
     browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
-    assert t_auth_page.auth_expect_auth_page_ok(), ""
+    assert t_auth_page.auth_expect_auth_page_ok(), "Нет перехода на ok"
 
 
 @pytest.mark.norm
@@ -84,7 +84,7 @@ def test_auth_page_mail(browser, request):
     t_auth_page = AuthRTExpectations(browser)
     time_expect_screen = t_auth_page.timetest()
     browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
-    assert t_auth_page.auth_expect_auth_page_mail(), ""
+    assert t_auth_page.auth_expect_auth_page_mail(), "Нет перехода на mail"
 
 
 @pytest.mark.skip(reason="Требуется капча")
@@ -225,7 +225,7 @@ def test_auth_page_vk(browser, request):
     t_auth_page = AuthRTExpectations(browser)
     time_expect_screen = t_auth_page.timetest()
     browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
-    assert t_auth_page.auth_expect_auth_page_vk(), ""
+    assert t_auth_page.auth_expect_auth_page_vk(), "Нет перехода на vk"
 
 
 @pytest.mark.norm
@@ -238,7 +238,7 @@ def test_auth_page_google(browser, request):
     t_auth_page = AuthRTExpectations(browser)
     time_expect_screen = t_auth_page.timetest()
     browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
-    assert t_auth_page.auth_expect_auth_page_google(), ""
+    assert t_auth_page.auth_expect_auth_page_google(), "Нет перехода на google"
 
 
 @pytest.mark.norm
