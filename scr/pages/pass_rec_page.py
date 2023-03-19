@@ -89,6 +89,12 @@ class PassRecRT(BasePage):
         return pass_rec_new_password_button_save
 
 
+    def timetest(self):
+        now = datetime.now()
+        timetest = f"{now.year}_{now.month}_{now.day}_{now.hour}_{now.minute}"
+        return timetest
+
+
 # тестовые методы для проверки ожиданий и результатов при восстановлении пароля
 class PassRecRTExpectations(BasePage):
     def pass_rec_expect_pass_rec_title(self):

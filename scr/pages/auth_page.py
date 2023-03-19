@@ -69,6 +69,13 @@ class AuthRT(BasePage):
         auth_type_phone.click()
         return auth_type_phone
 
+
+    def timetest(self):
+        now = datetime.now()
+        timetest = f"{now.year}_{now.month}_{now.day}_{now.hour}_{now.minute}"
+        return timetest
+
+
 # тестовые методы для проверки ожиданий и результатов при авторизации
 class AuthRTExpectations(BasePage):
     def auth_expect_auth_page(self):

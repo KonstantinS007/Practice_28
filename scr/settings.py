@@ -7,13 +7,13 @@
     # валидные данные
 
   # КАПЧА вручную (число время ввода) либо код от разработчиков с записью по локатору
-valid_first_name = ""
-valid_last_name = ""
-valid_email = ""
-valid_phone = ""
+valid_first_name = "Студент"
+valid_last_name = "Тестер"
+valid_email = "intqap@skillfactory.ru"
+valid_phone = "+7900000001"
 valid_password = "Qwerty123"
 valid_password_confirm = valid_password
-valid_code = "65566"  # код подтверждения, высылаемый на телефон/почту, вводится вручную
+valid_code = "77777"  # код подтверждения, высылаемый на телефон/почту, вводится вручную
 
 new_valid_password = "PASSword123"
 new_valid_password_confirm = new_valid_password
