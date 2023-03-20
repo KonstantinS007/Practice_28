@@ -1,5 +1,3 @@
-#! /usr/bin/env python
-# -*- coding: utf-8 -*-
 import time
 import pytest
 from scr.pages.pass_rec_page import PassRecRT, PassRecRTExpectations
@@ -16,8 +14,7 @@ def test_pass_rec_page(browser, request):
     t_pass_rec_page.pass_rec_page()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    time_expect_screen = t_pass_rec_page.timetest()
-    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect).png')
     assert t_pass_rec_page.pass_rec_expect_pass_rec_title(), "Нет перехода на страницу восстановление пароля"
 
 
@@ -44,8 +41,7 @@ def test_pass_rec_valid_phone_phone(browser, request):
     t_pass_rec_page.pass_rec_button_save_new_password()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    time_expect_screen = t_pass_rec_page.timetest()
-    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect).png')
     assert t_pass_rec_page.auth_expect_auth_new(), ""
 
 
@@ -71,8 +67,7 @@ def test_pass_rec_valid_phone_email(browser, request):
     t_pass_rec_page.pass_rec_button_save_new_password()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    time_expect_screen = t_pass_rec_page.timetest()
-    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect).png')
     assert t_pass_rec_page.auth_expect_auth_new(), ""
 
 
@@ -98,8 +93,7 @@ def test_pass_rec_valid_email_phone(browser, request):
     t_pass_rec_page.pass_rec_button_save_new_password()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    time_expect_screen = t_pass_rec_page.timetest()
-    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect).png')
     assert t_pass_rec_page.auth_expect_auth_new(), ""
 
 
@@ -125,8 +119,7 @@ def test_pass_rec_valid_email_email(browser, request):
     t_pass_rec_page.pass_rec_button_save_new_password()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    time_expect_screen = t_pass_rec_page.timetest()
-    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect).png')
     assert t_pass_rec_page.auth_expect_auth_new(), ""
 
 
@@ -146,8 +139,7 @@ def test_pass_rec_form_valid_login_phone(browser, login, request):
     t_pass_rec_page.pass_rec_button_continue()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    time_expect_screen = t_pass_rec_page.timetest()
-    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect).png')
     assert t_pass_rec_page.pass_rec_expect_login or t_pass_rec_page.pass_rec_expect_pass_rec_fail()\
            or t_pass_rec_page.auth_expect_captcha_fail(), ""
 
@@ -167,8 +159,7 @@ def test_pass_rec_form_valid_login_email(browser, login, request):
     t_pass_rec_page.pass_rec_button_continue()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    time_expect_screen = t_pass_rec_page.timetest()
-    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect).png')
     assert t_pass_rec_page.pass_rec_expect_login or t_pass_rec_page.pass_rec_expect_pass_rec_fail()\
            or t_pass_rec_page.auth_expect_captcha_fail(), ""
 
@@ -189,8 +180,7 @@ def test_pass_rec_form_valid_login_login(browser, login, request):
     t_pass_rec_page.pass_rec_button_continue()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    time_expect_screen = t_pass_rec_page.timetest()
-    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect).png')
     assert t_pass_rec_page.pass_rec_expect_login or t_pass_rec_page.pass_rec_expect_pass_rec_fail()\
            or t_pass_rec_page.auth_expect_captcha_fail(), ""
 
@@ -210,8 +200,7 @@ def test_pass_rec_form_valid_login_ls(browser, login, request):
     t_pass_rec_page.pass_rec_button_continue()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    time_expect_screen = t_pass_rec_page.timetest()
-    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect).png')
     assert t_pass_rec_page.pass_rec_expect_login or t_pass_rec_page.pass_rec_expect_pass_rec_fail()\
            or t_pass_rec_page.auth_expect_captcha_fail(), ""
 
@@ -230,8 +219,7 @@ def test_pass_rec_form_valid_login_by_none(browser, request):
     t_pass_rec_page.pass_rec_button_continue_reset()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    time_expect_screen = t_pass_rec_page.timetest()
-    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect).png')
     assert t_pass_rec_page.pass_rec_expect_code_send()\
            or t_pass_rec_page.auth_expect_captcha_fail(), ""
 
@@ -252,8 +240,7 @@ def test_pass_rec_form_valid_login_by_code(browser, request):
     t_pass_rec_page.pass_rec_button_continue_reset()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    time_expect_screen = t_pass_rec_page.timetest()
-    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect).png')
     assert t_pass_rec_page.pass_rec_expect_code_send()\
            or t_pass_rec_page.auth_expect_captcha_fail(), ""
 
@@ -261,7 +248,7 @@ def test_pass_rec_form_valid_login_by_code(browser, request):
     t_pass_rec_page.pass_rec_code_input_invalid_code(invalid_code)
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{time_expect_screen}(expect1).png')
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect1).png')
     assert t_pass_rec_page.pass_rec_expect_code_send(), ""
 
 
@@ -281,8 +268,7 @@ def test_pass_rec_form_valid_login_by_sms(browser, request):
     t_pass_rec_page.pass_rec_button_continue_reset()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    time_expect_screen = t_pass_rec_page.timetest()
-    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect).png')
     assert t_pass_rec_page.pass_rec_expect_code_send()\
            or t_pass_rec_page.auth_expect_captcha_fail(), ""
 
@@ -290,8 +276,7 @@ def test_pass_rec_form_valid_login_by_sms(browser, request):
     t_pass_rec_page.pass_rec_code_input_invalid_code(invalid_code)
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    time_expect_screen = t_pass_rec_page.timetest()
-    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{time_expect_screen}(expect1).png')
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect1).png')
     assert t_pass_rec_page.pass_rec_expect_code_send(), "Нет предупреждения о неверном коде"
 
 
@@ -303,6 +288,5 @@ def test_reg_slogan(browser, request):
     t_pass_rec_page.pass_rec_page()
 
     t_pass_rec_page = PassRecRTExpectations(browser)
-    time_expect_screen = t_pass_rec_page.timetest()
-    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect).png')
     assert t_pass_rec_page.reg_expect_slogan(), "Отсутствие слогана РТ"

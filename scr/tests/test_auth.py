@@ -1,5 +1,3 @@
-#! /usr/bin/env python
-# -*- coding: utf-8 -*-
 import time
 import pytest
 from scr.pages.auth_page import AuthRT, AuthRTExpectations
@@ -15,8 +13,7 @@ def test_auth_page(browser, request):
     t_auth_page.go_to_site()
 
     t_auth_page = AuthRTExpectations(browser)
-    time_expect_screen = t_auth_page.timetest()
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
     assert t_auth_page.auth_expect_auth_page(), "Отсутствует название сайта"
     assert t_auth_page.auth_expect_auth_slogan(), "Отсутствует название слоган"
 
@@ -35,8 +32,7 @@ def test_auth_email_valid_form(browser, request):
     t_auth_page.auth_button()
 
     t_auth_page = AuthRTExpectations(browser)
-    time_expect_screen = t_auth_page.timetest()
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
     assert t_auth_page.auth_expect_name()\
            or t_auth_page.auth_expect_captcha_fail(), ""
     assert t_auth_page.auth_expect_surname(), ""
@@ -55,8 +51,7 @@ def test_auth_phone_valid_form(browser, request):
     t_auth_page.auth_button()
 
     t_auth_page = AuthRTExpectations(browser)
-    time_expect_screen = t_auth_page.timetest()
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
     assert t_auth_page.auth_expect_name(), ""
     assert t_auth_page.auth_expect_surname(), ""
 
@@ -69,8 +64,7 @@ def test_auth_page_ok(browser, request):
     t_auth_page.auth_type_ok()
 
     t_auth_page = AuthRTExpectations(browser)
-    time_expect_screen = t_auth_page.timetest()
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
     assert t_auth_page.auth_expect_auth_page_ok(), "Нет перехода на ok"
 
 
@@ -82,8 +76,7 @@ def test_auth_page_mail(browser, request):
     t_auth_page.auth_type_mail()
 
     t_auth_page = AuthRTExpectations(browser)
-    time_expect_screen = t_auth_page.timetest()
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
     assert t_auth_page.auth_expect_auth_page_mail(), "Нет перехода на mail"
 
 
@@ -101,8 +94,7 @@ def test_auth_phone_invalid_password(browser, request):
     t_auth_page.auth_button()
 
     t_auth_page = AuthRTExpectations(browser)
-    time_expect_screen = t_auth_page.timetest()
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
     assert t_auth_page.auth_expect_auth_fail()\
            or t_auth_page.auth_expect_captcha_fail(), ""
 
@@ -120,8 +112,7 @@ def test_auth_email_invalid_password(browser, request):
     t_auth_page.auth_button()
 
     t_auth_page = AuthRTExpectations(browser)
-    time_expect_screen = t_auth_page.timetest()
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
     assert t_auth_page.auth_expect_auth_fail()\
            or t_auth_page.auth_expect_captcha_fail(), ""
 
@@ -143,8 +134,7 @@ def test_auth_phone_invalid_login(browser, login, request):
     t_auth_page.auth_button()
 
     t_auth_page = AuthRTExpectations(browser)
-    time_expect_screen = t_auth_page.timetest()
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
     assert t_auth_page.auth_expect_login() or t_auth_page.auth_expect_auth_fail() \
            or t_auth_page.auth_expect_captcha_fail(), ""
 
@@ -165,8 +155,7 @@ def test_auth_email_invalid_login(browser, login, request):
     t_auth_page.auth_button()
 
     t_auth_page = AuthRTExpectations(browser)
-    time_expect_screen = t_auth_page.timetest()
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
     assert t_auth_page.auth_expect_login() or t_auth_page.auth_expect_auth_fail() \
            or t_auth_page.auth_expect_captcha_fail(), ""
 
@@ -187,8 +176,7 @@ def test_auth_login_invalid_login(browser, login, request):
     t_auth_page.auth_button()
 
     t_auth_page = AuthRTExpectations(browser)
-    time_expect_screen = t_auth_page.timetest()
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
     assert t_auth_page.auth_expect_login() or t_auth_page.auth_expect_auth_fail() \
            or t_auth_page.auth_expect_captcha_fail(), ""
 
@@ -209,8 +197,7 @@ def test_auth_login_invalid_ls(browser, login, request):
     t_auth_page.auth_button()
 
     t_auth_page = AuthRTExpectations(browser)
-    time_expect_screen = t_auth_page.timetest()
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
     assert t_auth_page.auth_expect_login() or t_auth_page.auth_expect_auth_fail() \
            or t_auth_page.auth_expect_captcha_fail(), ""
 
@@ -223,8 +210,7 @@ def test_auth_page_vk(browser, request):
     t_auth_page.auth_type_vk()
 
     t_auth_page = AuthRTExpectations(browser)
-    time_expect_screen = t_auth_page.timetest()
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
     assert t_auth_page.auth_expect_auth_page_vk(), "Нет перехода на vk"
 
 
@@ -236,8 +222,7 @@ def test_auth_page_google(browser, request):
     t_auth_page.auth_type_google()
 
     t_auth_page = AuthRTExpectations(browser)
-    time_expect_screen = t_auth_page.timetest()
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
     assert t_auth_page.auth_expect_auth_page_google(), "Нет перехода на google"
 
 
@@ -250,6 +235,5 @@ def test_auth_page_yandex(browser, request):
     t_auth_page.auth_type_yandex()
 
     t_auth_page = AuthRTExpectations(browser)
-    time_expect_screen = t_auth_page.timetest()
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{time_expect_screen}(expect).png')
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
     assert t_auth_page.auth_expect_auth_page_yandex(), "Не происходит переход на Yandex"

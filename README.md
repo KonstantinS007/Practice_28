@@ -258,19 +258,18 @@
 
      Ввести данные в файл settings
      Установить зависимости из requirements.txt
+     Все тесты с капчей и кодами скип
 
      Тесты запускать в терминале с \tests
-     с теста регистрации (без проблем)
+     Тесты регистрации 
      pytest test_registr.py > myoutput_registr.log
-
-     авторизации  (с капчей)
+     Тесты авторизации
      pytest test_auth.py > myoutput_auth.log
-
-     восстонавление (с капчей и кодом смс)
+     Тесты восстонавление
      pytest test_pass_rec.py > myoutput_pass_rec.log
 
-     либо по маркеру  pytest -m norm > myoutput_norm.log
-     без кодов и капчи(6авто,2пасс,31регистр)
+     Либо по маркеру  pytest -m norm > myoutput_norm.log
+     без кодов и капчи(6авто,2пасс,8регистр и 26параметр)
    </details>
   </div>
   <div>
