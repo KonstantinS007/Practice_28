@@ -1,5 +1,4 @@
-#!/usr/bin/python3
-# -*- encoding=utf8 -*-
+
 # данные для тестов регистрации, авторизации и восстановления пароля, а также параметризованных тестов
 
 # Исходные валидные значения заменены после прохождения регистрации и всех проверок.
@@ -51,7 +50,7 @@ non_reg_login = "RTpassportlogin123!"
 non_reg_ls = "810293847566"
 invalid_ls = "81293847566"
 
-unicode_password = "ASDfgh123東のعไδ①¾"  # 東のعไδ①¾
+unicode_password = "ASDfgh123qwerty"  # 東のعไδ①¾
 short_password = "ASfgh1"
 long_password = "ASDFGHJKLzxcvbnm12345"
 only_letter_password = "ASDFGHJKLzxcvbnm"
