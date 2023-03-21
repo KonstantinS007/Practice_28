@@ -26,6 +26,12 @@ class RegRT(BasePage):
         reg_form_name.send_keys(last_name)
         return reg_form_name
 
+    def reg_region(self, region):
+        reg_form_region = self.find_element(RTRegLocators.LOCATOR_RT_REG_REGION)
+        reg_form_region.click()
+        reg_form_region.send_keys(region)
+        return reg_form_region
+
     def reg_address(self, address):
         reg_form_address = self.find_element(RTRegLocators.LOCATOR_RT_REG_ADDRESS)
         reg_form_address.click()

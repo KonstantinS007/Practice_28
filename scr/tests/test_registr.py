@@ -16,7 +16,29 @@ def test_reg_page(browser, request):
     t_reg_page = RegRTExpectations(browser)
 
     browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}(expect).png')
-    assert t_reg_page.reg_expect_reg_title(), "Не перешло на страницу Регистрация"
+    assert t_reg_page.reg_expect_reg_title(), "Нет перехода на страницу Регистрация"
+
+
+def test_elements_registration(browser, request):
+    """ТЕСТ 1-02 Проверка Формы "Регистрация" на наличие основных элементов."""
+    try:
+        t_reg_page = RegRT(browser)
+        t_reg_page.go_to_site()
+        t_reg_page.reg_page()
+        browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}(expect).png')
+        card_of_reg = [t_reg_page.reg_first_name, t_reg_page.reg_last_name, t_reg_page.reg_address,
+                       t_reg_page.reg_region, t_reg_page.reg_password,
+                       t_reg_page.reg_password, t_reg_page.reg_button]
+        for i in range(len(card_of_reg)):
+            assert t_reg_page.reg_first_name in card_of_reg, "Нет элемента Имя"
+            assert t_reg_page.reg_last_name in card_of_reg, "Нет элемента Фамилия"
+            assert t_reg_page.reg_region in card_of_reg, "Нет элемента Регион"
+            assert t_reg_page.reg_address in card_of_reg, "Нет элемента Логин"
+            assert t_reg_page.reg_password in card_of_reg, "Нет элемента Пароль"
+            assert t_reg_page.reg_password_confirm in card_of_reg, "Нет элемента Повтор пароля"
+            assert t_reg_page.reg_button in card_of_reg, "Нет элемента кнопки Зарегистрироваться"
+    except AssertionError:
+        print('Элементы для регистрации присуствуют в форме «Регистрация»')
 
 
 @pytest.mark.skip(reason="Требуется регистрация и ввод кода")
@@ -111,7 +133,9 @@ def test_reg_form_address(browser, address, request):
 
 @pytest.mark.norm
 @pytest.mark.parametrize("password", [unicode_password, short_password, long_password, empty_form,
-                                      only_letter_password, lower_password, upper_password, cyrillic_password])
+                                      only_letter_password, lower_password, upper_password, cyrillic_password],
+                         ids=["unicode_password", "short_password", "long_password", "empty_form",
+                                      "only_letter_password", "lower_password", "upper_password", "cyrillic_password"])
 def test_reg_form_password(browser, password, request):
     """ТЕСТ 1-06 (x8 параметров) - ввод данных в форму Регистрации - Поле 'Пароль'"""
     t_reg_page = RegRT(browser)
@@ -180,3 +204,41 @@ def test_reg_address_reg(browser, request):
     t_reg_page = RegRTExpectations(browser)
     browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}(expect).png')
     assert t_reg_page.reg_expect_address_reg(), "Ошибка с регистрацией одинаковых данных"
+
+
+@pytest.mark.norm
+@pytest.mark.parametrize("invalid_first_name",
+                         [
+                             (russian_generate_string) * 1
+                             , (russian_generate_string) * 100
+                             , (russian_generate_string) * 256
+                             , (empty), (numbers)
+                             , (latin_generate_string)
+                             , (chinese_chars), (special_chars)
+                         ],
+                         ids=
+                         [
+                             'russ_symbols=1', 'russ_symbols=100', 'russ_symbols=256',
+                             'empty', 'numbers', 'latin_symbols', 'chinese_symbols', 'special_symbols'
+                         ])
+def test_first_name_invalid_data(browser, invalid_first_name, request):
+    """Тест 1-10 ввод в поля "Имя" формы "Регистрация" невалидными значениями:
+    пустое значение;
+    буквы кириллицы в количестве 1 ; 100 ; 256 ;
+    латиницы буквы; китайские иероглифы; спецсимволы; числа."""
+    t_reg_page = RegRT(browser)
+    t_reg_page.go_to_site()
+    t_reg_page.reg_page()
+    t_reg_page.reg_first_name(invalid_first_name)
+    t_reg_page.reg_last_name(valid_last_name)
+    t_reg_page.reg_address(valid_email)
+    t_reg_page.reg_password(valid_password)
+    t_reg_page.reg_password_confirm(valid_password_confirm)
+    browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}(test).png')
+    t_reg_page.reg_button()
+
+    t_reg_page = RegRTExpectations(browser)
+    browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}(expect).png')
+    assert t_reg_page.reg_expect_name(), "Произошла перенаправление на получение кода регистрации с некорректными данными"
+
+

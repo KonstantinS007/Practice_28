@@ -64,3 +64,19 @@ empty_form = ""
 invalid_code = "123456"
 invalid_captcha = "A1s2D3QWE4"
 
+empty_password = ''
+menu_type_auth = ['Телефон', 'Почта', 'Логин', 'Лицевой счёт']
+placeholder_name = ['Мобильный телефон', 'Электронная почта', 'Логин', 'Лицевой счёт']
+first_name = 'Петр'
+last_name = 'Петрович'
+first_name_ = '-'
+last_name_ = '-'
+russian_generate_string = 'ф'
+latin_generate_string = 'invalid'
+chinese_chars = '形聲字象形字形声字/'
+special_chars = '()_+=/{}!@#$%^&*'
+numbers = 555
+empty = ''
+passw1 = 'QwE12345'
+passw2 = 'Z56vBn09Dswa9874'
+passw3 = 'W321Ujb30aSwsX1987654'
