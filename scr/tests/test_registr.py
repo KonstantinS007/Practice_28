@@ -21,25 +21,17 @@ def test_reg_page(browser, request):
 
 def test_elements_registration(browser, request):
     """ТЕСТ 1-02 Проверка Формы "Регистрация" на наличие основных элементов."""
-    try:
-        t_reg_page = RegRT(browser)
-        t_reg_page.go_to_site()
-        t_reg_page.reg_page()
-        browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}(expect).png')
-        card_of_reg = [t_reg_page.reg_first_name, t_reg_page.reg_last_name, t_reg_page.reg_address,
-                       t_reg_page.reg_region, t_reg_page.reg_password,
-                       t_reg_page.reg_password, t_reg_page.reg_button]
-        for i in range(len(card_of_reg)):
-            assert t_reg_page.reg_first_name in card_of_reg, "Нет элемента Имя"
-            assert t_reg_page.reg_last_name in card_of_reg, "Нет элемента Фамилия"
-            assert t_reg_page.reg_region in card_of_reg, "Нет элемента Регион"
-            assert t_reg_page.reg_address in card_of_reg, "Нет элемента Логин"
-            assert t_reg_page.reg_password in card_of_reg, "Нет элемента Пароль"
-            assert t_reg_page.reg_password_confirm in card_of_reg, "Нет элемента Повтор пароля"
-            assert t_reg_page.reg_button in card_of_reg, "Нет элемента кнопки Зарегистрироваться"
-    except AssertionError:
-        print('Элементы для регистрации присуствуют в форме «Регистрация»')
 
+    t_reg_page = RegRT(browser)
+    t_reg_page.go_to_site()
+    t_reg_page.reg_page()
+    browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}(expect).png')
+    assert t_reg_page.reg_first_name("")
+    assert t_reg_page.reg_last_name("")
+    assert t_reg_page.reg_address("")
+    assert t_reg_page.reg_password("")
+    assert t_reg_page.reg_password_confirm("")
+    assert t_reg_page.reg_button()
 
 @pytest.mark.skip(reason="Требуется регистрация и ввод кода")
 def test_reg_form_valid(browser, request):
@@ -222,7 +214,7 @@ def test_reg_address_reg(browser, request):
                              'empty', 'numbers', 'latin_symbols', 'chinese_symbols', 'special_symbols'
                          ])
 def test_first_name_invalid_data(browser, invalid_first_name, request):
-    """Тест 1-10 ввод в поля "Имя" формы "Регистрация" невалидными значениями:
+    """Тест 1-09 ввод в поля "Имя" формы "Регистрация" невалидными значениями:
     пустое значение;
     буквы кириллицы в количестве 1 ; 100 ; 256 ;
     латиницы буквы; китайские иероглифы; спецсимволы; числа."""

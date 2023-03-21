@@ -15,7 +15,37 @@ def test_auth_page(browser, request):
     t_auth_page = AuthRTExpectations(browser)
     browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
     assert t_auth_page.auth_expect_auth_page(), "Отсутствует название сайта"
-    assert t_auth_page.auth_expect_auth_slogan(), "Отсутствует название слоган"
+    assert t_auth_page.auth_expect_auth_slogan(), "Отсутствует слоган"
+
+
+def test_elements_registration(browser, request):
+    """ТЕСТ 2-02 Проверка Формы "Авторизации" на наличие основных элементов."""
+
+    t_auth_page = AuthRT(browser)
+    t_auth_page.go_to_site()
+    time.sleep(4)
+    browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_auth_page.timetest()}(expect).png')
+    assert t_auth_page.auth_type_phone(), "Отсуствует элемент выбора авторизации 'Телефон'"
+    assert t_auth_page.auth_type_email(), "Отсуствует элемент выбора авторизации 'Почта'"
+    assert t_auth_page.auth_type_login(), "Отсуствует элемент выбора авторизации 'Логин'"
+    assert t_auth_page.auth_type_ls(), "Отсуствует элемент выбора авторизации 'Лицевой счёт'"
+    assert t_auth_page.auth_login(""), "Отсуствует элемент поля логина"
+    assert t_auth_page.auth_password(""), "Отсуствует элемент поля пароль"
+    assert t_auth_page.auth_button(), "Отсуствует элемент кнопка 'Авторизация'"
+
+
+def test_menu_type_autoriz(browser, request):
+    """ТЕСТ 2-03 Проверка названия табов в меню выбора типа авторизации."""
+
+    t_auth_page = AuthRT(browser)
+    t_auth_page.go_to_site()
+
+    t_auth_page = AuthRTExpectations(browser)
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
+    assert t_auth_page.auth_expect_type_phone(), 'Ошибка в имени таба Меню "Телефон"'
+    assert t_auth_page.auth_expect_type_email(), 'Ошибка в имени таба Меню "Почта"'
+    assert t_auth_page.auth_expect_type_login(), 'Ошибка в имени таба Меню "Логин"'
+    assert t_auth_page.auth_expect_type_ls(), 'Ошибка в имени таба Меню "Лицевой счет"'
 
 
 @pytest.mark.skip(reason="Требуется капча")
@@ -204,7 +234,7 @@ def test_auth_login_invalid_ls(browser, login, request):
 
 @pytest.mark.norm
 def test_auth_page_vk(browser, request):
-    """Тест 2-12 - на переход авторизации через соц.сеть VK"""
+    """Тест 2-06- на переход авторизации через соц.сеть VK"""
     t_auth_page = AuthRT(browser)
     t_auth_page.go_to_site()
     t_auth_page.auth_type_vk()
@@ -216,7 +246,7 @@ def test_auth_page_vk(browser, request):
 
 @pytest.mark.norm
 def test_auth_page_google(browser, request):
-    """Тест 2-13 - на переход авторизации через соц.сеть google"""
+    """Тест 2-07 - на переход авторизации через соц.сеть google"""
     t_auth_page = AuthRT(browser)
     t_auth_page.go_to_site()
     t_auth_page.auth_type_google()
@@ -228,7 +258,7 @@ def test_auth_page_google(browser, request):
 
 @pytest.mark.norm
 def test_auth_page_yandex(browser, request):
-    """Тест 2-14 - на переход авторизации через соц.сеть yandex"""
+    """Тест 2-08 - на переход авторизации через соц.сеть yandex"""
     t_auth_page = AuthRT(browser)
     t_auth_page.go_to_site()
     time.sleep(3)

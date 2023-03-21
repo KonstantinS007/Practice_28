@@ -84,6 +84,26 @@ class AuthRTExpectations(BasePage):
         auth_expect_title = auth_expect.text == "Авторизация"
         return auth_expect_title
 
+    def auth_expect_type_phone(self):
+        auth_type_phone = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_TYPE_PHONE)
+        auth_type_phone = auth_type_phone.text == "Телефон"
+        return auth_type_phone
+
+    def auth_expect_type_email(self):
+        auth_type_email = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_TYPE_EMAIL)
+        auth_type_email = auth_type_email.text == "Почта"
+        return auth_type_email
+
+    def auth_expect_type_login(self):
+        auth_type_login = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_TYPE_LOGIN)
+        auth_type_login = auth_type_login.text == "Логин"
+        return auth_type_login
+
+    def auth_expect_type_ls(self):
+        auth_type_ls = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_TYPE_LS)
+        auth_type_ls = auth_type_ls.text == "Лицевой счёт"
+        return auth_type_ls
+
     def auth_expect_auth_slogan(self):
         auth_expect = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_EXPECT_SLOGAN)
         auth_expect_slogan = auth_expect.text == "Персональный помощник в цифровом мире Ростелекома"
