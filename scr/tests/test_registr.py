@@ -26,12 +26,12 @@ def test_elements_registration(browser, request):
     t_reg_page.go_to_site()
     t_reg_page.reg_page()
     browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}(expect).png')
-    assert t_reg_page.reg_first_name("")
-    assert t_reg_page.reg_last_name("")
-    assert t_reg_page.reg_address("")
-    assert t_reg_page.reg_password("")
-    assert t_reg_page.reg_password_confirm("")
-    assert t_reg_page.reg_button()
+    assert t_reg_page.reg_first_name(""), "Отсутствует поле Имя"
+    assert t_reg_page.reg_last_name(""), "Отсутствует поле Фамилия"
+    assert t_reg_page.reg_address(""), "Отсутствует поле Почта или Телефон"
+    assert t_reg_page.reg_password(""), "Отсутствует поле Пароль"
+    assert t_reg_page.reg_password_confirm(""), "Отсутствует поле Повтор пароля"
+    assert t_reg_page.reg_button(), "Отсутствует кнопка Зарегистрироваться"
 
 @pytest.mark.skip(reason="Требуется регистрация и ввод кода")
 def test_reg_form_valid(browser, request):
