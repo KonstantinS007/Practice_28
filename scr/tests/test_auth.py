@@ -48,44 +48,6 @@ def test_menu_type_autoriz(browser, request):
     assert t_auth_page.auth_expect_type_ls(), 'Ошибка в имени таба Меню "Лицевой счет"'
 
 
-@pytest.mark.skip(reason="Требуется капча")
-def test_auth_email_valid_form(browser, request):
-    """Позитивные тесты входа в зарегистрированный ЛК разными способами (по доступности) с верными данными
-       ТЕСТ 2-02 - вход через форму Авторизации с использованием E-mail"""
-    t_auth_page = AuthRT(browser)
-    t_auth_page.go_to_site()
-    t_auth_page.auth_type_email()
-    t_auth_page.auth_login(valid_email)
-    t_auth_page.auth_password(valid_password)
-    time.sleep(20)  # captcha
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(test).png')
-    t_auth_page.auth_button()
-
-    t_auth_page = AuthRTExpectations(browser)
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
-    assert t_auth_page.auth_expect_name()\
-           or t_auth_page.auth_expect_captcha_fail(), ""
-    assert t_auth_page.auth_expect_surname(), ""
-
-
-@pytest.mark.skip(reason="Требуется капча")
-def test_auth_phone_valid_form(browser, request):
-    """ТЕСТ 2-03 - вход через форму Авторизации с использованием номера телефона"""
-    t_auth_page = AuthRT(browser)
-    t_auth_page.go_to_site()
-    t_auth_page.auth_type_phone()
-    t_auth_page.auth_login(valid_phone)
-    t_auth_page.auth_password(valid_password)
-    time.sleep(20)  # captcha
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(test).png')
-    t_auth_page.auth_button()
-
-    t_auth_page = AuthRTExpectations(browser)
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
-    assert t_auth_page.auth_expect_name(), ""
-    assert t_auth_page.auth_expect_surname(), ""
-
-
 @pytest.mark.norm
 def test_auth_page_ok(browser, request):
     """Тест 2-04 на переход авторизации через соц.сеть ok"""
@@ -108,128 +70,6 @@ def test_auth_page_mail(browser, request):
     t_auth_page = AuthRTExpectations(browser)
     browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
     assert t_auth_page.auth_expect_auth_page_mail(), "Нет перехода на mail"
-
-
-@pytest.mark.skip(reason="Требуется капча")
-def test_auth_phone_invalid_password(browser, request):
-    """# Негативные тесты с вводом неверного пароля при валидном логине
-       ТЕСТ 2-06 - вход через форму Авторизации по номеру телефона с использованием неверного пароля"""
-    t_auth_page = AuthRT(browser)
-    t_auth_page.go_to_site()
-    t_auth_page.auth_type_phone()
-    t_auth_page.auth_login(valid_phone)
-    t_auth_page.auth_password(invalid_password)
-    time.sleep(20)  # captcha
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(test).png')
-    t_auth_page.auth_button()
-
-    t_auth_page = AuthRTExpectations(browser)
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
-    assert t_auth_page.auth_expect_auth_fail()\
-           or t_auth_page.auth_expect_captcha_fail(), ""
-
-
-@pytest.mark.skip(reason="Требуется капча")
-def test_auth_email_invalid_password(browser, request):
-    """# ТЕСТ 2-07 - вход через форму Авторизации по E-mail с использованием неверного пароля"""
-    t_auth_page = AuthRT(browser)
-    t_auth_page.go_to_site()
-    t_auth_page.auth_type_email()
-    t_auth_page.auth_login(valid_email)
-    t_auth_page.auth_password(invalid_password)
-    time.sleep(20)  # captcha
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(test).png')
-    t_auth_page.auth_button()
-
-    t_auth_page = AuthRTExpectations(browser)
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
-    assert t_auth_page.auth_expect_auth_fail()\
-           or t_auth_page.auth_expect_captcha_fail(), ""
-
-
-@pytest.mark.skip(reason="Требуется капча")
-@pytest.mark.parametrize("login", [invalid_email, non_reg_email, invalid_phone, non_reg_phone, non_reg_login,
-                                   non_reg_ls, empty_form, digit_valid_email, invalid_ls, invalid_phone_2])
-def test_auth_phone_invalid_login(browser, login, request):
-    """Негативные тесты с вводом несоответствующих типу поля данных / невалидных данных по каждому отдельному полю
-       ТЕСТ 2-08 (x10 параметров) - вход через форму Авторизации с использованием несоответствующего типа данных
-       для поля логин при выборе входа по номеру телефона"""
-    t_auth_page = AuthRT(browser)
-    t_auth_page.go_to_site()
-    t_auth_page.auth_type_phone()
-    t_auth_page.auth_login(login)
-    t_auth_page.auth_password(valid_password)
-    time.sleep(20)  # captcha
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(test).png')
-    t_auth_page.auth_button()
-
-    t_auth_page = AuthRTExpectations(browser)
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
-    assert t_auth_page.auth_expect_login() or t_auth_page.auth_expect_auth_fail() \
-           or t_auth_page.auth_expect_captcha_fail(), ""
-
-
-@pytest.mark.skip(reason="Требуется капча")
-@pytest.mark.parametrize("login", [invalid_email, non_reg_email, invalid_phone, non_reg_phone, non_reg_login,
-                                   non_reg_ls, empty_form, digit_valid_email, invalid_ls, invalid_phone_2])
-def test_auth_email_invalid_login(browser, login, request):
-    """ТЕСТ 2-09 (x10 параметров) - вход через форму Авторизации с использованием несоответствующего типа данных
-       для поля логин при выборе входа по E-mail"""
-    t_auth_page = AuthRT(browser)
-    t_auth_page.go_to_site()
-    t_auth_page.auth_type_email()
-    t_auth_page.auth_login(login)
-    t_auth_page.auth_password(valid_password)
-    time.sleep(20)  # captcha
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(test).png')
-    t_auth_page.auth_button()
-
-    t_auth_page = AuthRTExpectations(browser)
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
-    assert t_auth_page.auth_expect_login() or t_auth_page.auth_expect_auth_fail() \
-           or t_auth_page.auth_expect_captcha_fail(), ""
-
-
-@pytest.mark.skip(reason="Требуется капча")
-@pytest.mark.parametrize("login", [invalid_email, non_reg_email, invalid_phone, non_reg_phone, non_reg_login,
-                                   non_reg_ls, empty_form, digit_valid_email, invalid_ls, invalid_phone_2])
-def test_auth_login_invalid_login(browser, login, request):
-    """ТЕСТ 2-10 (x10 параметров) - вход через форму Авторизации с использованием несоответствующего типа данных
-       для поля логин при выборе входа по логину"""
-    t_auth_page = AuthRT(browser)
-    t_auth_page.go_to_site()
-    t_auth_page.auth_type_login()
-    t_auth_page.auth_login(login)
-    t_auth_page.auth_password(valid_password)
-    time.sleep(20)  # captcha
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(test).png')
-    t_auth_page.auth_button()
-
-    t_auth_page = AuthRTExpectations(browser)
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
-    assert t_auth_page.auth_expect_login() or t_auth_page.auth_expect_auth_fail() \
-           or t_auth_page.auth_expect_captcha_fail(), ""
-
-
-@pytest.mark.skip(reason="Требуется капча")
-@pytest.mark.parametrize("login", [invalid_email, non_reg_email, invalid_phone, non_reg_phone, non_reg_login,
-                                   non_reg_ls, empty_form, digit_valid_email, invalid_ls, invalid_phone_2])
-def test_auth_login_invalid_ls(browser, login, request):
-    """ТЕСТ 2-11 (x10 параметров) - вход через форму Авторизации с использованием несоответствующего типа данных
-       для поля логин при выборе входа по лицевому счету (ЛС)"""
-    t_auth_page = AuthRT(browser)
-    t_auth_page.go_to_site()
-    t_auth_page.auth_type_ls()
-    t_auth_page.auth_login(login)
-    t_auth_page.auth_password(valid_password)
-    time.sleep(20)  # captcha
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(test).png')
-    t_auth_page.auth_button()
-
-    t_auth_page = AuthRTExpectations(browser)
-    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
-    assert t_auth_page.auth_expect_login() or t_auth_page.auth_expect_auth_fail() \
-           or t_auth_page.auth_expect_captcha_fail(), ""
 
 
 @pytest.mark.norm
@@ -267,3 +107,168 @@ def test_auth_page_yandex(browser, request):
     t_auth_page = AuthRTExpectations(browser)
     browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
     assert t_auth_page.auth_expect_auth_page_yandex(), "Не происходит переход на Yandex"
+
+
+
+@pytest.mark.skip(reason="Требуется капча")
+def test_auth_email_valid_form(browser, request):
+    """Позитивные тесты входа в зарегистрированный ЛК разными способами (по доступности) с верными данными
+       ТЕСТ 2-12 - вход через форму Авторизации с использованием E-mail"""
+    t_auth_page = AuthRT(browser)
+    t_auth_page.go_to_site()
+    t_auth_page.auth_type_email()
+    t_auth_page.auth_login(valid_email)
+    t_auth_page.auth_password(valid_password)
+    time.sleep(20)  # captcha
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(test).png')
+    t_auth_page.auth_button()
+
+    t_auth_page = AuthRTExpectations(browser)
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
+    assert t_auth_page.auth_expect_name()\
+           or t_auth_page.auth_expect_captcha_fail(), ""
+    assert t_auth_page.auth_expect_surname(), ""
+
+
+@pytest.mark.skip(reason="Требуется капча")
+def test_auth_phone_valid_form(browser, request):
+    """ТЕСТ 2-13 - вход через форму Авторизации с использованием номера телефона"""
+    t_auth_page = AuthRT(browser)
+    t_auth_page.go_to_site()
+    t_auth_page.auth_type_phone()
+    t_auth_page.auth_login(valid_phone)
+    t_auth_page.auth_password(valid_password)
+    time.sleep(20)  # captcha
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(test).png')
+    t_auth_page.auth_button()
+
+    t_auth_page = AuthRTExpectations(browser)
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
+    assert t_auth_page.auth_expect_name(), ""
+    assert t_auth_page.auth_expect_surname(), ""
+
+
+
+
+@pytest.mark.skip(reason="Требуется капча")
+def test_auth_phone_invalid_password(browser, request):
+    """# Негативные тесты с вводом неверного пароля при валидном логине
+       ТЕСТ 2-16 - вход через форму Авторизации по номеру телефона с использованием неверного пароля"""
+    t_auth_page = AuthRT(browser)
+    t_auth_page.go_to_site()
+    t_auth_page.auth_type_phone()
+    t_auth_page.auth_login(valid_phone)
+    t_auth_page.auth_password(invalid_password)
+    time.sleep(20)  # captcha
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(test).png')
+    t_auth_page.auth_button()
+
+    t_auth_page = AuthRTExpectations(browser)
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
+    assert t_auth_page.auth_expect_auth_fail()\
+           or t_auth_page.auth_expect_captcha_fail(), ""
+
+
+@pytest.mark.skip(reason="Требуется капча")
+def test_auth_email_invalid_password(browser, request):
+    """# ТЕСТ 2-17 - вход через форму Авторизации по E-mail с использованием неверного пароля"""
+    t_auth_page = AuthRT(browser)
+    t_auth_page.go_to_site()
+    t_auth_page.auth_type_email()
+    t_auth_page.auth_login(valid_email)
+    t_auth_page.auth_password(invalid_password)
+    time.sleep(20)  # captcha
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(test).png')
+    t_auth_page.auth_button()
+
+    t_auth_page = AuthRTExpectations(browser)
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
+    assert t_auth_page.auth_expect_auth_fail()\
+           or t_auth_page.auth_expect_captcha_fail(), ""
+
+
+@pytest.mark.skip(reason="Требуется капча")
+@pytest.mark.parametrize("login", [invalid_email, non_reg_email, invalid_phone, non_reg_phone, non_reg_login,
+                                   non_reg_ls, empty_form, digit_valid_email, invalid_ls, invalid_phone_2])
+def test_auth_phone_invalid_login(browser, login, request):
+    """Негативные тесты с вводом несоответствующих типу поля данных / невалидных данных по каждому отдельному полю
+       ТЕСТ 2-18 (x10 параметров) - вход через форму Авторизации с использованием несоответствующего типа данных
+       для поля логин при выборе входа по номеру телефона"""
+    t_auth_page = AuthRT(browser)
+    t_auth_page.go_to_site()
+    t_auth_page.auth_type_phone()
+    t_auth_page.auth_login(login)
+    t_auth_page.auth_password(valid_password)
+    time.sleep(20)  # captcha
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(test).png')
+    t_auth_page.auth_button()
+
+    t_auth_page = AuthRTExpectations(browser)
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
+    assert t_auth_page.auth_expect_login() or t_auth_page.auth_expect_auth_fail() \
+           or t_auth_page.auth_expect_captcha_fail(), ""
+
+
+@pytest.mark.skip(reason="Требуется капча")
+@pytest.mark.parametrize("login", [invalid_email, non_reg_email, invalid_phone, non_reg_phone, non_reg_login,
+                                   non_reg_ls, empty_form, digit_valid_email, invalid_ls, invalid_phone_2])
+def test_auth_email_invalid_login(browser, login, request):
+    """ТЕСТ 2-19 (x10 параметров) - вход через форму Авторизации с использованием несоответствующего типа данных
+       для поля логин при выборе входа по E-mail"""
+    t_auth_page = AuthRT(browser)
+    t_auth_page.go_to_site()
+    t_auth_page.auth_type_email()
+    t_auth_page.auth_login(login)
+    t_auth_page.auth_password(valid_password)
+    time.sleep(20)  # captcha
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(test).png')
+    t_auth_page.auth_button()
+
+    t_auth_page = AuthRTExpectations(browser)
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
+    assert t_auth_page.auth_expect_login() or t_auth_page.auth_expect_auth_fail() \
+           or t_auth_page.auth_expect_captcha_fail(), ""
+
+
+@pytest.mark.skip(reason="Требуется капча")
+@pytest.mark.parametrize("login", [invalid_email, non_reg_email, invalid_phone, non_reg_phone, non_reg_login,
+                                   non_reg_ls, empty_form, digit_valid_email, invalid_ls, invalid_phone_2])
+def test_auth_login_invalid_login(browser, login, request):
+    """ТЕСТ 2-20 (x10 параметров) - вход через форму Авторизации с использованием несоответствующего типа данных
+       для поля логин при выборе входа по логину"""
+    t_auth_page = AuthRT(browser)
+    t_auth_page.go_to_site()
+    t_auth_page.auth_type_login()
+    t_auth_page.auth_login(login)
+    t_auth_page.auth_password(valid_password)
+    time.sleep(20)  # captcha
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(test).png')
+    t_auth_page.auth_button()
+
+    t_auth_page = AuthRTExpectations(browser)
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
+    assert t_auth_page.auth_expect_login() or t_auth_page.auth_expect_auth_fail() \
+           or t_auth_page.auth_expect_captcha_fail(), ""
+
+
+@pytest.mark.skip(reason="Требуется капча")
+@pytest.mark.parametrize("login", [invalid_email, non_reg_email, invalid_phone, non_reg_phone, non_reg_login,
+                                   non_reg_ls, empty_form, digit_valid_email, invalid_ls, invalid_phone_2])
+def test_auth_login_invalid_ls(browser, login, request):
+    """ТЕСТ 2-21 (x10 параметров) - вход через форму Авторизации с использованием несоответствующего типа данных
+       для поля логин при выборе входа по лицевому счету (ЛС)"""
+    t_auth_page = AuthRT(browser)
+    t_auth_page.go_to_site()
+    t_auth_page.auth_type_ls()
+    t_auth_page.auth_login(login)
+    t_auth_page.auth_password(valid_password)
+    time.sleep(20)  # captcha
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(test).png')
+    t_auth_page.auth_button()
+
+    t_auth_page = AuthRTExpectations(browser)
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_page.timetest()}(expect).png')
+    assert t_auth_page.auth_expect_login() or t_auth_page.auth_expect_auth_fail() \
+           or t_auth_page.auth_expect_captcha_fail(), ""
+
+

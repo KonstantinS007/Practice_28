@@ -12,6 +12,11 @@ class PassRecRT(BasePage):
         pass_rec_link.click()
         return pass_rec_link
 
+    def pass_rec_page_back(self):
+        pass_rec_link = self.find_element(RTPassRecLocators.LOCATOR_RT_PASS_REC_BUTTON_RESET_BACK)
+        pass_rec_link.click()
+        return pass_rec_link
+
     def pass_rec_type_phone(self):
         pass_rec_type_phone = self.find_element(RTPassRecLocators.LOCATOR_RT_PASS_REC_TYPE_PHONE)
         pass_rec_type_phone.click()
@@ -38,7 +43,6 @@ class PassRecRT(BasePage):
         pass_rec_login.clear()
         pass_rec_login.send_keys(login)
         return pass_rec_login
-
 
     def pass_rec_button_continue(self):
         pass_rec_button_continue = self.find_element(RTPassRecLocators.LOCATOR_RT_PASS_REC_BUTTON_CONTINUE)
@@ -107,6 +111,31 @@ class PassRecRTExpectations(BasePage):
         pass_rec_expect = self.find_element(RTPassRecLocators.LOCATOR_RT_Pass_Rec_SLOGAN)
         pass_rec_expect_slogan = pass_rec_expect.text == "Персональный помощник в цифровом мире Ростелекома"
         return pass_rec_expect_slogan
+
+    def auth_expect_type_phone(self):
+        auth_type_phone = self.find_element(RTPassRecLocators.LOCATOR_RT_PASS_REC_TYPE_PHONE)
+        auth_type_phone = auth_type_phone.text == "Телефон"
+        return auth_type_phone
+
+    def auth_expect_type_email(self):
+        auth_type_email = self.find_element(RTPassRecLocators.LOCATOR_RT_PASS_REC_TYPE_EMAIL)
+        auth_type_email = auth_type_email.text == "Почта"
+        return auth_type_email
+
+    def auth_expect_type_login(self):
+        auth_type_login = self.find_element(RTPassRecLocators.LOCATOR_RT_PASS_REC_TYPE_LOGIN)
+        auth_type_login = auth_type_login.text == "Логин"
+        return auth_type_login
+
+    def auth_expect_type_ls(self):
+        auth_type_ls = self.find_element(RTPassRecLocators.LOCATOR_RT_PASS_REC_TYPE_LS)
+        auth_type_ls = auth_type_ls.text == "Лицевой счёт"
+        return auth_type_ls
+
+    def pass_rec_expect_login_text(self):
+        pass_rec_login_text = self.find_element(RTPassRecLocators.LOCATOR_RT_PASS_REC_LOGIN_TEXT)
+        pass_rec_login_text = pass_rec_login_text.text
+        return pass_rec_login_text
 
     def pass_rec_expect_login(self):
         pass_rec_expect = None

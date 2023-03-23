@@ -12,7 +12,7 @@ valid_first_name = "Студент"
 valid_last_name = "Тестер"
 valid_email = "intqap@skillfactory.ru"
 valid_phone = "+7900000001"
-valid_password = "Qwerty123"
+valid_password = "Qwerty123S"
 valid_password_confirm = valid_password
 valid_code = "77777"  # код подтверждения, высылаемый на телефон/почту, вводится вручную
 

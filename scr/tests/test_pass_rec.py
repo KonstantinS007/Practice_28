@@ -2,6 +2,7 @@ import time
 import pytest
 from scr.pages.pass_rec_page import PassRecRT, PassRecRTExpectations
 from scr.settings import *
+from scr.pages.auth_page import AuthRTExpectations
 # pytest test_pass_rec.py > myoutput_pass_rec.log
 
 
@@ -16,6 +17,60 @@ def test_pass_rec_page(browser, request):
     t_pass_rec_page = PassRecRTExpectations(browser)
     browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect).png')
     assert t_pass_rec_page.pass_rec_expect_pass_rec_title(), "Нет перехода на страницу восстановление пароля"
+
+
+@pytest.mark.norm
+def test_pass_rec_slogan(browser, request):
+    """Тест 3-02 - на наличие слогана РТ"""
+    t_pass_rec_page = PassRecRT(browser)
+    t_pass_rec_page.go_to_site()
+    t_pass_rec_page.pass_rec_page()
+
+    t_pass_rec_page = PassRecRTExpectations(browser)
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect).png')
+    assert t_pass_rec_page.reg_expect_slogan(), "Отсутствие слогана РТ"
+
+
+@pytest.mark.norm
+def test_pass_rec_login_text(browser, request):
+    """Тест 3-03 - Надпись в поле ввода соотвествует выбраному табу"""
+    t_pass_rec_page = PassRecRT(browser)
+    t_pass_rec_page.go_to_site()
+    t_pass_rec_page.pass_rec_page()
+    t_pass_rec_page.pass_rec_type_phone()
+    t_pass_rec_page = PassRecRTExpectations(browser)
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect1).png')
+    assert t_pass_rec_page.pass_rec_expect_login_text() == "Мобильный телефон", 'Ошибка в имени таба Меню "Телефон"'
+    t_pass_rec_page = PassRecRT(browser)
+    t_pass_rec_page.pass_rec_type_email()
+    t_pass_rec_page = PassRecRTExpectations(browser)
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect2).png')
+    assert t_pass_rec_page.pass_rec_expect_login_text() == "Электронная почта", 'Ошибка в имени таба Меню "Почта"'
+    t_pass_rec_page = PassRecRT(browser)
+    t_pass_rec_page.pass_rec_type_login()
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect3).png')
+    t_pass_rec_page = PassRecRTExpectations(browser)
+    assert t_pass_rec_page.pass_rec_expect_login_text() == "Логин", 'Ошибка в имени таба Меню "Логин"'
+    t_pass_rec_page = PassRecRT(browser)
+    t_pass_rec_page.pass_rec_type_ls()
+    t_pass_rec_page = PassRecRTExpectations(browser)
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect4).png')
+    assert t_pass_rec_page.pass_rec_expect_login_text() == "Лицевой счёт", 'Ошибка в имени таба Меню "Лицевой счет"'
+
+
+@pytest.mark.norm
+def test_pass_rec_page_back(browser, request):
+    """Позитивный тест загрузки страницы и перехода в раздел Восстановления пароля
+       ТЕСТ 3-04 - переход на страницу Восстановления пароля со страницы Авторизации тут же вернуться"""
+    t_pass_rec_page = PassRecRT(browser)
+    t_pass_rec_page.go_to_site()
+    t_pass_rec_page.pass_rec_page()
+    time.sleep(3)
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(test).png')
+    t_pass_rec_page.pass_rec_page_back()
+    t_pass_rec_page = AuthRTExpectations(browser)
+    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect).png')
+    assert t_pass_rec_page.auth_expect_auth_page(), "Нет перехода на страницу Авторизация"
 
 
 @pytest.mark.skip(reason="Требуется капча и код")
@@ -280,13 +335,3 @@ def test_pass_rec_form_valid_login_by_sms(browser, request):
     assert t_pass_rec_page.pass_rec_expect_code_send(), "Нет предупреждения о неверном коде"
 
 
-@pytest.mark.norm
-def test_reg_slogan(browser, request):
-    """Тест 3-13 - на наличие слогана РТ"""
-    t_pass_rec_page = PassRecRT(browser)
-    t_pass_rec_page.go_to_site()
-    t_pass_rec_page.pass_rec_page()
-
-    t_pass_rec_page = PassRecRTExpectations(browser)
-    browser.save_screenshot(f'screenshots_pass_rec/{request.node.name}_{t_pass_rec_page.timetest()}(expect).png')
-    assert t_pass_rec_page.reg_expect_slogan(), "Отсутствие слогана РТ"

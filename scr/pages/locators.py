@@ -72,6 +72,7 @@ class RTPassRecLocators:
     LOCATOR_RT_PASS_REC_TYPE_LOGIN = (By.ID, "t-btn-tab-login")  # Кнопка логин
     LOCATOR_RT_PASS_REC_TYPE_LS = (By.ID, "t-btn-tab-ls")  # Кнопка лиц. счёт
     LOCATOR_RT_PASS_REC_LOGIN = (By.ID, "username")  # Поле ввода логина(тел.поч.счёт)
+    LOCATOR_RT_PASS_REC_LOGIN_TEXT = (By.CSS_SELECTOR, "#page-right > div > div > div > form > div.tabs-input-container > div.rt-input-container.tabs-input-container__login > div > span.rt-input__placeholder")
     LOCATOR_RT_PASS_REC_CAPTCHA_IMG = (By.XPATH, "//img[@alt='Captcha']")  # Картинка капчи
     LOCATOR_RT_PASS_REC_CAPTCHA_ANSWER = (By.ID, "captcha")  # Поле ввода капчи
 
@@ -84,7 +85,7 @@ class RTPassRecLocators:
     LOCATOR_RT_PASS_REC_NEW_PASSWORD = (By.ID, "password-new")   # Поле ввода нового пароля
     LOCATOR_RT_PASS_REC_NEW_PASSWORD_CONFIRM = (By.ID, "password-confirm")   # Поле ввода повтора нового пароля
     LOCATOR_RT_PASS_REC_BUTTON_SAVE_NEW_PASSWORD = (By.ID, "t-btn-reset-pass")  # Кнопка Продолжить
-
+    LOCATOR_RT_PASS_REC_BUTTON_RESET_BACK = (By.XPATH, "//button[@id='reset-back']")
 
 # локаторы сайта для проверки ожиданий со страницы восстановления пароля
     LOCATOR_RT_PASS_REC_EXPECT_PASS_REC_TITLE = (By.CSS_SELECTOR, ".card-container__title")  # Элемент Восстановление пароля
