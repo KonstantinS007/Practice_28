@@ -179,25 +179,6 @@ def test_reg_slogan(browser, request):
     assert t_reg_page.reg_expect_slogan(), "Отсутствие слогана РТ"
 
 
-@pytest.mark.skip(reason="Требуется зарегистрированный аккаунт")
-def test_reg_address_reg(browser, request):
-    """ТЕСТ 1-09 - ввод данных в форму Регистрации - Зарегистрированный ранее 'E-mail или мобильный телефон'"""
-    t_reg_page = RegRT(browser)
-    t_reg_page.go_to_site()
-    t_reg_page.reg_page()
-    t_reg_page.reg_first_name(valid_first_name)
-    t_reg_page.reg_last_name(valid_last_name)
-    t_reg_page.reg_address(valid_email_reg)
-    t_reg_page.reg_password(valid_password)
-    t_reg_page.reg_password_confirm(valid_password_confirm)
-    browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}(test).png')
-    t_reg_page.reg_button()
-
-    t_reg_page = RegRTExpectations(browser)
-    browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}(expect).png')
-    assert t_reg_page.reg_expect_address_reg(), "Ошибка с регистрацией одинаковых данных"
-
-
 @pytest.mark.norm
 @pytest.mark.parametrize("invalid_first_name",
                          [
@@ -234,3 +215,20 @@ def test_first_name_invalid_data(browser, invalid_first_name, request):
     assert t_reg_page.reg_expect_name(), "Произошла перенаправление на получение кода регистрации с некорректными данными"
 
 
+@pytest.mark.skip(reason="Требуется зарегистрированный аккаунт")
+def test_reg_address_reg(browser, request):
+    """ТЕСТ 1-09 - ввод данных в форму Регистрации - Зарегистрированный ранее 'E-mail или мобильный телефон'"""
+    t_reg_page = RegRT(browser)
+    t_reg_page.go_to_site()
+    t_reg_page.reg_page()
+    t_reg_page.reg_first_name(valid_first_name)
+    t_reg_page.reg_last_name(valid_last_name)
+    t_reg_page.reg_address(valid_email_reg)
+    t_reg_page.reg_password(valid_password)
+    t_reg_page.reg_password_confirm(valid_password_confirm)
+    browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}(test).png')
+    t_reg_page.reg_button()
+
+    t_reg_page = RegRTExpectations(browser)
+    browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}(expect).png')
+    assert t_reg_page.reg_expect_address_reg(), "Ошибка с регистрацией одинаковых данных"
