@@ -271,8 +271,8 @@
      Тесты восстонавление
      pytest test_pass_rec.py > myoutput_pass_rec.log
 
-     Либо по маркеру  pytest -m norm > myoutput_norm.log
-     без скип (6авто,4пасс,9регистр и 26параметр)
+     Либо по маркеру  pytest -v -m norm > myoutput_norm.log
+     без скип (8авто,4пасс,9регистр и 26параметр)
    </details>
   </div>
   <div>
