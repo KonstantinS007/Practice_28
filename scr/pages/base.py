@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 class BasePage:
     def __init__(self, driver):
         self.driver = driver
-        self.base_url = "https://b2c.passport.rt.ru"
+        self.base_url = "https://b2c.passport.rt.ru/"
 
     # переход на сайт
     def go_to_site(self):
