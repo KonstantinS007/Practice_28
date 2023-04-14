@@ -37,10 +37,12 @@ class RTAuthLocators:
 
 # локаторы сайта для страницы регистрации
 class RTRegLocators:
+    LOCATOR_RT_REG_CONTEINER = (By.CSS_SELECTOR, "#page-right > div > div > div > form > div.rt-select.rt-select--search.register-form__dropdown > div > div > span.rt-input__mask")
     LOCATOR_RT_REG_SLOGAN = (By.CSS_SELECTOR, ".what-is__desc")  # Элемент Слоган РТ
     LOCATOR_RT_REG_LINK = (By.ID, "kc-register")  # Элемент Зарегистрироваться
     LOCATOR_RT_REG_FIRST_NAME = (By.XPATH, "//input[@name='firstName']")  # Поле ввода Имя
     LOCATOR_RT_REG_LAST_NAME = (By.XPATH, "//input[@name='lastName']")  # Поле ввода Фамилия
+    LOCATOR_RT_REG_REGION_TEXT = (By.CSS_SELECTOR, "#page-right > div > div > div > form > div.rt-select.rt-select--search.register-form__dropdown > div > div > span.rt-input__mask > span.rt-input__mask-start")
     LOCATOR_RT_REG_REGION = (By.XPATH, "//div[@class='rt-input-container rt-select__input']//input[@type='text']")  # Поле ввода региона
     LOCATOR_RT_REG_ADDRESS = (By.XPATH, "//input[@id='address']")  # Поле ввода почты и телефона
     LOCATOR_RT_REG_PASSWORD = (By.ID, "password")  # Поле ввода пароля
@@ -91,7 +93,7 @@ class RTPassRecLocators:
     LOCATOR_RT_PASS_REC_EXPECT_PASS_REC_TITLE = (By.CSS_SELECTOR, ".card-container__title")  # Элемент Восстановление пароля
     LOCATOR_RT_PASS_REC_EXPECT_LOGIN = (By.CSS_SELECTOR, ".rt-input-container__meta.rt-input-container__meta--error")  # Предупреждение об ошибке в поле ввода некорректные
     LOCATOR_RT_PASS_REC_EXPECT_PASS_REC_FAIL = (By.ID, "form-error-message")# Предупреждение об ошибке в поле ввода невалидные
-    LOCATOR_RT_PASS_REC_EXPECT_CODE_TITLE = (By.CSS_SELECTOR, ".card-container__title")  # Элемент Восстановление пароля страницы ввода кода
+    LOCATOR_RT_PASS_REC_EXPECT_CODE_TITLE = (By.CSS_SELECTOR, "#page-right > div > div > div > form > div.rt-select.rt-select--search.register-form__dropdown > div > div > span.rt-input__mask > span.rt-input__mask-start")  # Элемент Восстановление пароля страницы ввода кода.card-container__title
     LOCATOR_RT_PASS_REC_EXPECT_CODE_SEND = (By.CSS_SELECTOR, ".card-container__desc")   # Поле ввода кода
     LOCATOR_RT_PASS_REC_EXPECT_CODE_INVALID = (By.ID, "form-error-message")  # Предупреждение об ошибке в поле ввода кода
     LOCATOR_RT_PASS_REC_EXPECT_NEW_PASSWORD_FORM = (By.CSS_SELECTOR, ".card-container__desc")  # Элемент Правила востановления пароля

@@ -17,9 +17,9 @@ class BasePage:
         self.driver.save_screenshot(file_name)
 
     # поиск локатора на странице
-    def find_element(self, locator, time=10):
+    def find_element(self, locator, time=10): #  self.driver.find_element(locator)
         return WebDriverWait(self.driver, time).\
-            until(EC.presence_of_element_located(locator), message=f"Not find {locator}")
+           until(EC.presence_of_element_located(locator), message=f"Not find {locator}")
 
     # проверка присутствия локатора на странице
     def is_presented(self, locator, time=10):

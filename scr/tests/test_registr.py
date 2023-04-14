@@ -16,8 +16,19 @@ def test_reg_page(browser, request):
     t_reg_page = RegRTExpectations(browser)
 
     browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}(expect).png')
-    assert t_reg_page.reg_expect_reg_title(), "Нет перехода на страницу Регистрация"
+    assert(t_reg_page.reg_expect_reg_title()), "Нет перехода на страницу Регистрация"
 
+@pytest.mark.skip(reason="Требуется разобрать методы и базу")
+def test_reg_page_region(browser, request):
+    """Поиск по дефолту региона на бекенде"""
+    t_reg_page = RegRT(browser)
+    t_reg_page.go_to_site()
+    t_reg_page.reg_page()
+    # Открытие элемента контейнера
+    t_reg_page.reg_conteiner_reg_region(browser)
+
+    browser.save_screenshot(f'screenshots_registr/{request.node.name}_{t_reg_page.timetest()}(expect).png')
+    assert(t_reg_page.reg_text_reg_region()), "Не тот регион, должен Москва г"
 
 def test_elements_registration(browser, request):
     """ТЕСТ 1-02 Проверка Формы "Регистрация" на наличие основных элементов."""

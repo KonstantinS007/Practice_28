@@ -79,6 +79,7 @@ class AuthRT(BasePage):
 
 # тестовые методы для проверки ожиданий и результатов при авторизации
 class AuthRTExpectations(BasePage):
+
     def auth_expect_auth_page(self):
         auth_expect = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_EXPECT_TITLE)
         auth_expect_title = auth_expect.text == "Авторизация"
