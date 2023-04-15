@@ -11,6 +11,7 @@ class RTAuthLocators:
     LOCATOR_RT_AUTH_LOGIN = (By.ID, "username")  # Поле ввода логина(тел.поч.счёт)
     LOCATOR_RT_AUTH_PASSWORD = (By.ID, "password")  # Поле ввода пароля
     LOCATOR_RT_AUTH_BUTTON = (By.ID, "kc-login")  # Кнопка войти
+    LOCATOR_RT_AUTH_TYPE_DOCUMENT = (By.CSS_SELECTOR, "#page-right > div > div > div > form > div.auth-policy > a")
     LOCATOR_RT_AUTH_CAPTCHA_IMG = (By.XPATH, "//img[@alt='Captcha']")  # Картинка капчи
     LOCATOR_RT_AUTH_CAPTCHA_ANSWER = (By.ID, "captcha")  # Поле ввода капчи
     LOCATOR_RT_AUTH_VK_TYPE = (By.ID, "oidc_vk")  # Ссылка на вход через VK
@@ -34,10 +35,11 @@ class RTAuthLocators:
     LOCATOR_RT_AUTH_EXPECT_OK_TITLE = (By.XPATH, "//div[contains(text(),'Одноклассники')]")  # Элемент страницы OK
     LOCATOR_RT_AUTH_EXPECT_YANDEX_TITLE = (By.CLASS_NAME, "Logo Logo_ya")  # Элемент страницы Yandex
     LOCATOR_RT_AUTH_EXPECT_VK_TITLE = (By.XPATH, "//b[contains(text(),'ВКонтакте')]")  # Элемент страницы VK
-
+    # страница пользовательского соглашения
+    LOCATOR_RT_AUTH_EXPECT_TYPE_DOCUMENT = (By.XPATH, "//h1[contains(text(),'Пользователь')]")
 # локаторы сайта для страницы регистрации
 class RTRegLocators:
-    LOCATOR_RT_REG_CONTEINER = (By.CSS_SELECTOR, "#page-right > div > div > div > form > div.rt-select.rt-select--search.register-form__dropdown > div > div > span.rt-input__mask")
+    LOCATOR_RT_REG_REGION_CONTAINER = (By.CSS_SELECTOR, "#page-right > div > div > div > form > div.rt-select.rt-select--search.register-form__dropdown > div > div > span.rt-input__mask")
     LOCATOR_RT_REG_SLOGAN = (By.CSS_SELECTOR, ".what-is__desc")  # Элемент Слоган РТ
     LOCATOR_RT_REG_LINK = (By.ID, "kc-register")  # Элемент Зарегистрироваться
     LOCATOR_RT_REG_FIRST_NAME = (By.XPATH, "//input[@name='firstName']")  # Поле ввода Имя

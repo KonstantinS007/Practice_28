@@ -31,4 +31,10 @@ class BasePage:
             pass
         return element
 
+    # переключатель вкладок
+    def switch_to_numer_window(self, numer):
+        return self.driver.switch_to.window(self.driver.window_handles[numer])
 
+    # открывашка скрытых элементов
+    def display_container(self, element):
+        return self.driver.execute_script("arguments[0].style.display = 'block';", element)

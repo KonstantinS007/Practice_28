@@ -31,10 +31,10 @@ class RegRT(BasePage):
         reg_text_reg_region = reg_text.text == "Москва г"
         return reg_text_reg_region
 
-    def reg_conteiner_reg_region(self, driver):
-        reg_conteiner_reg_region = self.find_element(RTRegLocators.LOCATOR_RT_REG_CONTEINER)
-        driver.execute_script("arguments[0].style.display = 'block';", reg_conteiner_reg_region)
-        return reg_conteiner_reg_region
+    def reg_container_reg_region(self):
+        reg_container_reg_region = self.find_element(RTRegLocators.LOCATOR_RT_REG_REGION_CONTAINER)
+        self.display_container(reg_container_reg_region)
+        return reg_container_reg_region
 
     def reg_region(self, region):
         reg_form_region = self.find_element(RTRegLocators.LOCATOR_RT_REG_REGION)

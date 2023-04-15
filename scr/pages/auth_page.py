@@ -12,6 +12,12 @@ class AuthRT(BasePage):
         auth_type_phone.click()
         return auth_type_phone
 
+    def auth_type_document(self):
+        auth_type_document = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_TYPE_DOCUMENT)
+        auth_type_document.click()
+        self.switch_to_numer_window(1)
+        return auth_type_document
+
     def auth_type_email(self):
         auth_type_email = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_TYPE_EMAIL)
         auth_type_email.click()
@@ -84,6 +90,11 @@ class AuthRTExpectations(BasePage):
         auth_expect = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_EXPECT_TITLE)
         auth_expect_title = auth_expect.text == "Авторизация"
         return auth_expect_title
+
+    def auth_expect_document_page(self):
+        auth_expect = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_EXPECT_TYPE_DOCUMENT)
+        auth_expect_document = auth_expect.text == "Публичная оферта о заключении Пользовательского соглашения на использование Сервиса «Ростелеком ID»"
+        return auth_expect_document
 
     def auth_expect_type_phone(self):
         auth_type_phone = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_TYPE_PHONE)

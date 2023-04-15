@@ -18,6 +18,19 @@ def test_auth_page(browser, request):
     assert t_auth_page.auth_expect_auth_slogan(), "Отсутствует слоган"
 
 
+@pytest.mark.norm
+def test_page_document(browser, request):
+    """Переход на страницу пользовательского соглашения открытием новой вкладки"""
+    t_auth_document = AuthRT(browser)
+    t_auth_document.go_to_site()
+    t_auth_document.auth_type_document()
+    # Открытие элемента в контейнере
+    t_page_document = AuthRTExpectations(browser)
+
+    browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_document.timetest()}(expect).png')
+    assert(t_page_document.auth_expect_document_page()), "Не тот документ"
+
+
 def test_elements_registration(browser, request):
     """ТЕСТ 2-02 Проверка Формы "Авторизации" на наличие основных элементов."""
 
