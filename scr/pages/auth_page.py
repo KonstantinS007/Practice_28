@@ -7,6 +7,8 @@ from .locators import RTAuthLocators
 
 # тестовые методы для данных при авторизации
 class AuthRT(BasePage):
+
+
     def auth_type_phone(self):
         auth_type_phone = self.find_element(RTAuthLocators.LOCATOR_RT_AUTH_TYPE_PHONE)
         auth_type_phone.click()

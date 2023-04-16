@@ -28,7 +28,7 @@ def test_page_document(browser, request):
     t_page_document = AuthRTExpectations(browser)
 
     browser.save_screenshot(f'screenshots_auth/{request.node.name}_{t_auth_document.timetest()}(expect).png')
-    assert(t_page_document.auth_expect_document_page()), "Не тот документ"
+    assert t_page_document.auth_expect_document_page(), "Не тот документ"
 
 
 def test_elements_registration(browser, request):

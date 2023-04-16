@@ -1,7 +1,7 @@
 
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from selenium.webdriver.common.by import By
 
 # функции, описывающие операции, проводимые на сайте РТ
 class BasePage:
@@ -17,9 +17,9 @@ class BasePage:
         self.driver.save_screenshot(file_name)
 
     # поиск локатора на странице
-    def find_element(self, locator, time=10): #  self.driver.find_element(locator)
-        return WebDriverWait(self.driver, time).\
-           until(EC.presence_of_element_located(locator), message=f"Not find {locator}")
+    def find_element(self, locator, time=10):  # WebDriverWait(self.driver, time).\
+          # until(EC.presence_of_element_located(locator), message=f"Not find {locator}")
+        return self.driver.find_element(*locator)
 
     # проверка присутствия локатора на странице
     def is_presented(self, locator, time=10):
